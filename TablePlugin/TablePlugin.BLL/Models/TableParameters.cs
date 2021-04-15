@@ -1,16 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Security;
 using TablePlugin.BLL.Enums;
 
 namespace TablePlugin.BLL.Models
 {
-    public class TableParameter
+    public class TableParameters
     {
-        public TableParameter()
-        {
-            
-        }
-
         private double tableTopLength;
         private double tableTopWidth;
         private double tableTopHeight;
@@ -26,7 +20,10 @@ namespace TablePlugin.BLL.Models
         private double? tableLegsDiameter;
         private double? tableLegsSideLength;
 
-        private Dictionary<string, Dictionary<string, decimal>> param;
+        private List<AdditionalParameters> additionalParameterses = new List<AdditionalParameters>
+        {
+            new AdditionalParameters {Min = 1000, Max = 2000, Name = ParametersType.TableTopLength}
+        };
 
         public double TableTopLength
         {
@@ -92,6 +89,11 @@ namespace TablePlugin.BLL.Models
         {
             get => tableLegsSideLength;
             set => tableLegsSideLength = value;
+        }
+        public List<AdditionalParameters> AdditionalParameterses
+        {
+            get => additionalParameterses;
+            set => additionalParameterses = value;
         }
     }
 }

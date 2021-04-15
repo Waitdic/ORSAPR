@@ -7,9 +7,9 @@ namespace TablePlugin.BLL
     public class TableBuilder
     {
         private KompasConnector connector;
-        private TableParameter parameters;
+        private TableParameters parameters;
 
-        public TableBuilder(KompasConnector connector, TableParameter parameters)
+        public TableBuilder(KompasConnector connector, TableParameters parameters)
         {
             this.connector = connector;
             this.parameters = parameters;

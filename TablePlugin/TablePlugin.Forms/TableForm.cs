@@ -15,7 +15,7 @@ namespace TablePlugin.Forms
 
         private void BuildButton_Click(object sender, EventArgs e)
         {
-            var parameters = new TableParameter
+            var parameters = new TableParameters
             {
                 TableTopLength = (double) this.tableTopLength.Value,
                 TableTopWidth = (double) this.tableTopWidth.Value,
