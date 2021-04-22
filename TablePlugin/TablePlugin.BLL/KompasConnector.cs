@@ -13,12 +13,10 @@ namespace TablePlugin.BLL
 			this.KsObject.Visible = true;
 			this.KsObject.ActivateControllerAPI();
 
-			this.KsDoc = this.KsObject.Document3D();
-			this.KsDoc.Create(false, true);
-			this.Part = this.KsDoc.GetPart((short)Part_Type.pTop_Part);
+			var ksDoc = this.KsObject.Document3D();
+			ksDoc.Create(false, true);
+			this.Part = ksDoc.GetPart((short)Part_Type.pTop_Part);
 		}
-
-		private ksDocument3D KsDoc { get; }
 
 		public KompasObject KsObject { get; set; }
 

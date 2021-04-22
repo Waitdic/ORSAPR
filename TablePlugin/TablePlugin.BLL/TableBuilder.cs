@@ -6,17 +6,14 @@ namespace TablePlugin.BLL
 {
     public class TableBuilder
     {
-        private KompasConnector connector;
-        private TableParameters parameters;
+        private KompasConnector _connector;
+        private TableParameters _parameters;
 
-        public TableBuilder(KompasConnector connector, TableParameters parameters)
+        public void Build(TableParameters parameters)
         {
-            this.connector = connector;
-            this.parameters = parameters;
-        }
+            _connector = new KompasConnector();
+            _parameters = parameters;
 
-        public void Build()
-        {
             this.CreateTopTable();
             this.CreateTableLegs();
             this.CreateHole();
@@ -25,7 +22,7 @@ namespace TablePlugin.BLL
         private void CreateTopTable()
         {
             // Начальная плоскость
-            var currentPlane = (ksEntity)connector.Part.GetDefaultEntity((short)Obj3dType.o3d_planeYOZ);
+            var currentPlane = (ksEntity)_connector.Part.GetDefaultEntity((short)Obj3dType.o3d_planeYOZ);
             
             // Массив эскизов
             var sketchList = new ksEntity[2];

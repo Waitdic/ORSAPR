@@ -5,95 +5,43 @@ namespace TablePlugin.BLL.Models
 {
     public class TableParameters
     {
-        private double tableTopLength;
-        private double tableTopWidth;
-        private double tableTopHeight;
-
-        private double? holeRadius;
-        private double? holeParamY;
-        private double? holeParamX;
-
-        private int tableLegsNumber;
-        private double tableLegsHeight;
-        private LegsType tableLegsType;
-
-        private double? tableLegsDiameter;
-        private double? tableLegsSideLength;
+        private TableTopParameters _tableTop;
+        private TableHoleParameters _tableHole;
+        private TableLegsParameters _tableLegs;
 
         private List<AdditionalParameters> additionalParameterses = new List<AdditionalParameters>
         {
             new AdditionalParameters {Min = 1000, Max = 2000, Name = ParametersType.TableTopLength}
         };
 
-        public double TableTopLength
+        public TableTopParameters TableTop
         {
-            get => tableTopLength;
-            set => tableTopLength = value;
+            get => _tableTop;
+            set => _tableTop = value;
         }
 
-        public double TableTopWidth
+        public TableHoleParameters TableHole
         {
-            get => tableTopWidth;
-            set => tableTopWidth = value;
+            get => _tableHole;
+            set { }
         }
 
-        public double TableTopHeight
+        public TableLegsParameters TabLegs
         {
-            get => tableTopHeight;
-            set => tableTopHeight = value;
+            get => _tableLegs;
+            set => _tableLegs = value;
         }
 
-        public double? HoleRadius
-        {
-            get => holeRadius;
-            set => holeRadius = value;
-        }
-
-        public double? HoleParamY
-        {
-            get => holeParamY;
-            set => holeParamY = value;
-        }
-
-        public double? HoleParamX
-        {
-            get => holeParamX;
-            set => holeParamX = value;
-        }
-
-        public double TableLegsHeight
-        {
-            get => tableLegsHeight;
-            set => tableLegsHeight = value;
-        }
-
-        public int TableLegsNumber
-        {
-            get => tableLegsNumber;
-            set => tableLegsNumber = value;
-        }
-
-        public LegsType TableLegsType
-        {
-            get => tableLegsType;
-            set => tableLegsType = value;
-        }
-
-        public double? TableLegsDiameter
-        {
-            get => tableLegsDiameter;
-            set => tableLegsDiameter = value;
-        }
-
-        public double? TableLegsSideLength
-        {
-            get => tableLegsSideLength;
-            set => tableLegsSideLength = value;
-        }
-        public List<AdditionalParameters> AdditionalParameterses
+        public List<AdditionalParameters> AdditionalParameters
         {
             get => additionalParameterses;
             set => additionalParameterses = value;
+        }
+
+        private bool CheckRangeOfVaues(string name)
+        {
+           
+            return true;
         }
     }
 }

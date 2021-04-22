@@ -45,7 +45,10 @@
     <Compile Include="Enums\ParametersType.cs" />
     <Compile Include="KompasConnector.cs" />
     <Compile Include="Models\AdditionalParameters.cs" />
+    <Compile Include="Models\TableHoleParameters.cs" />
+    <Compile Include="Models\TableLegsParameters.cs" />
     <Compile Include="Models\TableParameters.cs" />
+    <Compile Include="Models\TableTop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableBuilder.cs" />
   </ItemGroup>
