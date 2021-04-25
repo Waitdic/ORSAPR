@@ -7,40 +7,67 @@ namespace TablePlugin.BLL.Models
     {
         private int _number;
         private double _height;
-        private LegsType _type;
         private double _value;
 
-        public TableLegsParameters(int number, double height, LegsType type, double value)
-        {
-            _number = number;
-            _height = height;
-            _type = type;
-           _value = value;
-
-        }
-
+        /// <summary>
+        /// Высота ножек.
+        /// </summary>
         public double Height
         {
             get => _height;
-            set => _height = value;
+            set
+            {
+                ValidateToDoubleValue(value);
+                _height = value;
+            }
         }
 
+        /// <summary>
+        /// Количество ножек.
+        /// </summary>
         public int Number
         {
             get => _number;
-            set => _number = value;
+            set
+            {
+                ValidateToDoubleValue(value);
+                _number = value;
+            }
         }
 
-        public LegsType Type
-        {
-            get => _type;
-            set => _type = value;
-        }
+        /// <summary>
+        /// Тип ножек.
+        /// </summary>
+        public LegsType Type { get; set; }
 
+        /// <summary>
+        /// Значние размера основания ножек.
+        /// </summary>
         public double Value
         {
             get => _value;
-            set => _value = value;
+            set
+            {
+                ValidateToDoubleValue(value);
+                _value = value;
+            } 
+        }
+
+        /// <summary>
+        /// Проверка присваиваемого значения на double.
+        /// </summary>
+        /// <param name="value">Присваиваемая переменная.</param>
+        private static void ValidateToDoubleValue(double value)
+        {
+            if (double.IsNaN(value) || double.IsInfinity(value))
+            {
+                throw new ArgumentException("Значение double не является числом");
+            }
+            
+            if (value <= 0)
+            {
+                throw new ArgumentException("Значение double меньше или равно нулю");
+            }
         }
     }
 }

@@ -2,28 +2,28 @@
 
 namespace TablePlugin.BLL.Models
 {
+    /// <summary>
+    /// Класс дополнительных параметров для стола.
+    /// </summary>
     public class AdditionalParameters
     {
-        private double min;
-        private double max;
-        private ParametersType name;
+        private double _min;
+        private double _max;
+        private ParametersType _name;
 
-        public double Min
-        {
-            get => min;
-            set => min = value;
-        }
+        /// <summary>
+        /// Минимальное значение.
+        /// </summary>
+        public double Min { get => _min; internal set => _min = value; }
 
-        public double Max
-        {
-            get => max;
-            set => max = value;
-        }
+        /// <summary>
+        /// Максимальное значение.
+        /// </summary>
+        public double Max { get => _max; internal set => _max = value; }
 
-        public ParametersType Name
-        {
-            get => name;
-            set => name = value;
-        }
+        /// <summary>s6
+        /// Имя параметра.
+        /// </summary>
+        public ParametersType Name { get => _name; internal set => _name = value; }
     }
 }
