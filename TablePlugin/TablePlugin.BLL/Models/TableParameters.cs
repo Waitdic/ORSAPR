@@ -25,7 +25,7 @@ namespace TablePlugin.BLL.Models
             new AdditionalParameters { Min = 120, Max = 1870, Name = ParametersType.HoleParamX },
             new AdditionalParameters { Min = 90, Max = 700, Name = ParametersType.HoleParamY },
             new AdditionalParameters { Min = 20, Max = 30, Name = ParametersType.HoleRadius },
-            new AdditionalParameters { Min = 600, Max = 700, Name = ParametersType.TableLegsHeight},
+            new AdditionalParameters { Min = 600, Max = 700, Name = ParametersType.TableLegsHeight },
             new AdditionalParameters { Min = 4, Max = 5, Name = ParametersType.TableLegsNumber },
             new AdditionalParameters { Min = 40, Max = 60, Name = ParametersType.TableLegsDiameter },
             new AdditionalParameters { Min = 40, Max = 60, Name = ParametersType.TableLegsSideLength },
@@ -118,7 +118,7 @@ namespace TablePlugin.BLL.Models
             foreach (var keyValue in container)
             {
                 var param = _additionalParameters.FirstOrDefault(x => x.Name == keyValue.Key);
-                if (keyValue.Value <= param.Min || keyValue.Value >= param.Max)
+                if (keyValue.Value < param.Min || keyValue.Value > param.Max)
                 {
                     throw new ArgumentException($"Ошибка {keyValue.Key}. Значение должно быть в диапозоне {param.Min} до {param.Max}.");
                 }

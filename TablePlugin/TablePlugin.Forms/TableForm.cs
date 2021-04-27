@@ -8,6 +8,8 @@ namespace TablePlugin.Forms
 {
     public partial class TableForm : Form
     {
+        private TableBuilder _builder;
+
         public TableForm()
         {
             InitializeComponent();
@@ -43,8 +45,12 @@ namespace TablePlugin.Forms
                 };
             }
 
-            var builder = new TableBuilder();
-            builder.Build(parameters);
+            if (_builder == null)
+            {
+                _builder = new TableBuilder();
+            }
+
+            _builder.Build(parameters);
         }
 
         private void CheckHole_CheckedChanged(object sender, EventArgs e)

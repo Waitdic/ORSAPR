@@ -8,18 +8,23 @@ namespace TablePlugin.BLL
     {
         public KompasConnector()
         {
-			this.KsObject = (KompasObject)Activator.CreateInstance(Type.GetTypeFromProgID("KOMPAS.Application.5"));
+			KsObject = (KompasObject)Activator.CreateInstance(Type.GetTypeFromProgID("KOMPAS.Application.5"));
 
-			this.KsObject.Visible = true;
-			this.KsObject.ActivateControllerAPI();
+			KsObject.Visible = true;
+			KsObject.ActivateControllerAPI();
 
-			var ksDoc = this.KsObject.Document3D();
-			ksDoc.Create(false, true);
-			this.Part = ksDoc.GetPart((short)Part_Type.pTop_Part);
-		}
+            GetNewPart();
+        }
 
 		public KompasObject KsObject { get; set; }
 
-		public ksPart Part { get; set; }
+        public ksPart Part { get; set; }
+
+        public void GetNewPart()
+        {
+            var ksDoc = KsObject.Document3D();
+            ksDoc.Create(false, true);
+            Part = ksDoc.GetPart((short)Part_Type.pTop_Part);
+        }
     }
 }
