@@ -3,6 +3,9 @@ using TablePlugin.BLL.Enums;
 
 namespace TablePlugin.BLL.Models
 {
+    /// <summary>
+    /// Параметры ножек стола.
+    /// </summary>
     public struct TableLegsParameters
     {
         private int _number;
