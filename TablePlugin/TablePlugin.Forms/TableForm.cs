@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -117,7 +118,7 @@ namespace TablePlugin.Forms
         /// </summary>
         private void SetMinButton_Click(object sender, EventArgs e)
         {
-            SetMinMaxParameters(x => x.Min);
+            SetMinMaxParameters(x => x.Value.Min);
         }
 
         /// <summary>
@@ -125,7 +126,7 @@ namespace TablePlugin.Forms
         /// </summary>
         private void SetMaxButton_Click(object sender, EventArgs e)
         {
-            SetMinMaxParameters(x => x.Max);
+            SetMinMaxParameters(x => x.Value.Max);
         }
 
         /// <summary>
@@ -150,24 +151,24 @@ namespace TablePlugin.Forms
         /// Метод для установки значений минимума и максимума для полей формы.
         /// </summary>
         /// <param name="predicate">Предикат.</param>
-        private void SetMinMaxParameters(Func<AdditionalParameters, double> predicate)
+        private void SetMinMaxParameters(Func<KeyValuePair<ParametersType, AdditionalParameters>, double> predicate)
         {
             var parameters = new TableParameters();
             var limits = parameters.AdditionalParameters;
 
-            tableTopLength.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableTopLength).Select(predicate).FirstOrDefault();
-            tableTopWidth.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableTopWidth).Select(predicate).FirstOrDefault();
-            tableTopHeight.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableTopHeight).Select(predicate).FirstOrDefault();
+            tableTopLength.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableTopLength).Select(predicate).FirstOrDefault();
+            tableTopWidth.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableTopWidth).Select(predicate).FirstOrDefault();
+            tableTopHeight.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableTopHeight).Select(predicate).FirstOrDefault();
 
-            holeRadius.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.HoleRadius).Select(predicate).FirstOrDefault();
-            holeParamX.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.HoleParamX).Select(predicate).FirstOrDefault();
-            holeParamY.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.HoleParamY).Select(predicate).FirstOrDefault();
+            holeRadius.Value = (decimal)limits.Where(x => x.Key == ParametersType.HoleRadius).Select(predicate).FirstOrDefault();
+            holeParamX.Value = (decimal)limits.Where(x => x.Key == ParametersType.HoleParamX).Select(predicate).FirstOrDefault();
+            holeParamY.Value = (decimal)limits.Where(x => x.Key == ParametersType.HoleParamY).Select(predicate).FirstOrDefault();
 
-            tableLegsHeight.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableLegsHeight).Select(predicate).FirstOrDefault();
-            tableLegsNumber.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableLegsNumber).Select(predicate).FirstOrDefault();
+            tableLegsHeight.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableLegsHeight).Select(predicate).FirstOrDefault();
+            tableLegsNumber.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableLegsNumber).Select(predicate).FirstOrDefault();
             SizeValue.Value = legsType.SelectedIndex == 0
-                ? (decimal)limits.Where(x => x.LogicalName == ParametersType.TableLegsDiameter).Select(predicate).FirstOrDefault()
-                : (decimal)limits.Where(x => x.LogicalName == ParametersType.TableLegsSideLength).Select(predicate).FirstOrDefault();
+                ? (decimal)limits.Where(x => x.Key == ParametersType.TableLegsDiameter).Select(predicate).FirstOrDefault()
+                : (decimal)limits.Where(x => x.Key == ParametersType.TableLegsSideLength).Select(predicate).FirstOrDefault();
         }
     }
 }
