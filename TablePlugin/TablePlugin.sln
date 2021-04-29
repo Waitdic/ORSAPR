@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablePlugin.Forms", "TableP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablePlugin.BLL", "TablePlugin.BLL\TablePlugin.BLL.csproj", "{96D43873-A8AD-48E2-9F86-9D2A008B6AC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TablePlugin.UnitTests", "TablePlugin.UnitTests\TablePlugin.UnitTests.csproj", "{35B0161B-FA2D-48C9-8153-44936ADD8311}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{96D43873-A8AD-48E2-9F86-9D2A008B6AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96D43873-A8AD-48E2-9F86-9D2A008B6AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96D43873-A8AD-48E2-9F86-9D2A008B6AC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35B0161B-FA2D-48C9-8153-44936ADD8311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35B0161B-FA2D-48C9-8153-44936ADD8311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35B0161B-FA2D-48C9-8153-44936ADD8311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35B0161B-FA2D-48C9-8153-44936ADD8311}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

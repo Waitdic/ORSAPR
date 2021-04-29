@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -14,6 +12,9 @@ namespace TablePlugin.Forms
     {
         private TableBuilder _builder;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableForm"/> class.
+        /// </summary
         public TableForm()
         {
             InitializeComponent();
@@ -21,6 +22,9 @@ namespace TablePlugin.Forms
             legsType.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Обработчик кнопки "Построить 3D модель".
+        /// </summary>
         private void BuildButton_Click(object sender, EventArgs e)
         {
             var parameters = new TableParameters();
@@ -60,12 +64,18 @@ namespace TablePlugin.Forms
             _builder.Build(parameters);
         }
 
+        /// <summary>
+        /// Обработчик чекбокса "Скозное отверстие".
+        /// </summary>
         private void CheckHole_CheckedChanged(object sender, EventArgs e)
         {
             ChangeFormLocation(!checkHole.Checked);   
             groupBox3.Visible = checkHole.Checked;
         }
 
+        /// <summary>
+        /// Обработчик комбобокса "Тип ножек"
+        /// </summary>
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (legsType.SelectedIndex)
@@ -102,16 +112,25 @@ namespace TablePlugin.Forms
             }
         }
 
+        /// <summary>
+        /// Обработчик кнопки "Минимумы".
+        /// </summary>
         private void SetMinButton_Click(object sender, EventArgs e)
         {
             SetMinMaxParameters(x => x.Min);
         }
 
+        /// <summary>
+        /// Обработчик кнопки "Максимумы".
+        /// </summary>
         private void SetMaxButton_Click(object sender, EventArgs e)
         {
             SetMinMaxParameters(x => x.Max);
         }
 
+        /// <summary>
+        /// Обработчик кнопки "По умолчанию".
+        /// </summary>
         private void DefaultButton_Click(object sender, EventArgs e)
         {
             tableTopLength.Value = 1500m;
@@ -127,6 +146,10 @@ namespace TablePlugin.Forms
             SizeValue.Value = 50m;
         }
 
+        /// <summary>
+        /// Метод для установки значений минимума и максимума для полей формы.
+        /// </summary>
+        /// <param name="predicate">Предикат.</param>
         private void SetMinMaxParameters(Func<AdditionalParameters, double> predicate)
         {
             var parameters = new TableParameters();
