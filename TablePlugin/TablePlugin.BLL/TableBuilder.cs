@@ -178,30 +178,30 @@ namespace TablePlugin.BLL
         private void PressOutSketch(ksSketchDefinition sketchDef, double height, ksObj3dTypeEnum type = ksObj3dTypeEnum.o3d_bossExtrusion, bool side = true)
         {
             // Выдавливание по типу
-            var iBaseExtrusionEntity = (ksEntity)_connector.Part.NewEntity((short)type);
+            var extrusionEntity = (ksEntity)_connector.Part.NewEntity((short)type);
 
             // интерфейс свойств базовой операции выдавливания
             if (type == ksObj3dTypeEnum.o3d_bossExtrusion)
             {
-                var iBaseExtrusionDef = (ksBossExtrusionDefinition)iBaseExtrusionEntity.GetDefinition();
-                iBaseExtrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
-                iBaseExtrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
+                var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
+                extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
+                extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
 
                 // эскиз операции выдавливания
-                iBaseExtrusionDef.SetSketch(sketchDef);
+                extrusionDef.SetSketch(sketchDef);
             }
             else if (type == ksObj3dTypeEnum.o3d_cutExtrusion)
             { 
-                var iBaseExtrusionDef = (ksCutExtrusionDefinition)iBaseExtrusionEntity.GetDefinition();
-                iBaseExtrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
-                iBaseExtrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
+                var extrusionDef = (ksCutExtrusionDefinition)extrusionEntity.GetDefinition();
+                extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
+                extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
 
                 // эскиз операции вырезания по выдавливанию
-                iBaseExtrusionDef.SetSketch(sketchDef);
+                extrusionDef.SetSketch(sketchDef);
             }
-            
+
             // создать операцию
-            iBaseExtrusionEntity.Create();
+            extrusionEntity.Create();
         }
 
         /// <summary>
