@@ -42,6 +42,9 @@ namespace TablePlugin.BLL
             CreateHole();
         }
 
+        /// <summary>
+        /// Метод для построения столешницы.
+        /// </summary>
         private void CreateTopTable()
         {
             // Создаем эскиз.
@@ -66,6 +69,9 @@ namespace TablePlugin.BLL
             PressOutSketch(sketchDef, _parameters.TableTop.Height);
         }
 
+        /// <summary>
+        /// Метод для построения ножек стола.
+        /// </summary>
         private void CreateTableLegs()
         {
             // Создаем эскиз.
@@ -142,6 +148,9 @@ namespace TablePlugin.BLL
             PressOutSketch(sketchDef, _parameters.TabLegs.Height, side: false);
         }
 
+        /// <summary>
+        /// Метод для вырезания отверстия в столешнице.
+        /// </summary>
         private void CreateHole()
         {
             // Создаем эскиз.

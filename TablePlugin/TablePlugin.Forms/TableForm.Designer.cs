@@ -56,7 +56,7 @@ namespace TablePlugin.Forms
             this.SetMinButton = new System.Windows.Forms.Button();
             this.SetMaxButton = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.DefaultButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -197,7 +197,7 @@ namespace TablePlugin.Forms
             this.tableTopHeight.Size = new System.Drawing.Size(64, 20);
             this.tableTopHeight.TabIndex = 14;
             this.tableTopHeight.Value = new decimal(new int[] {
-            30,
+            35,
             0,
             0,
             0});
@@ -219,7 +219,7 @@ namespace TablePlugin.Forms
             this.tableTopWidth.Size = new System.Drawing.Size(64, 20);
             this.tableTopWidth.TabIndex = 13;
             this.tableTopWidth.Value = new decimal(new int[] {
-            600,
+            700,
             0,
             0,
             0});
@@ -241,7 +241,7 @@ namespace TablePlugin.Forms
             this.tableTopLength.Size = new System.Drawing.Size(63, 20);
             this.tableTopLength.TabIndex = 12;
             this.tableTopLength.Value = new decimal(new int[] {
-            2000,
+            1500,
             0,
             0,
             0});
@@ -347,7 +347,7 @@ namespace TablePlugin.Forms
             this.SizeValue.Size = new System.Drawing.Size(80, 20);
             this.SizeValue.TabIndex = 16;
             this.SizeValue.Value = new decimal(new int[] {
-            40,
+            50,
             0,
             0,
             0});
@@ -369,7 +369,7 @@ namespace TablePlugin.Forms
             this.tableLegsHeight.Size = new System.Drawing.Size(87, 20);
             this.tableLegsHeight.TabIndex = 14;
             this.tableLegsHeight.Value = new decimal(new int[] {
-            600,
+            650,
             0,
             0,
             0});
@@ -418,6 +418,7 @@ namespace TablePlugin.Forms
             this.SetMinButton.TabIndex = 14;
             this.SetMinButton.Text = "Минимумы";
             this.SetMinButton.UseVisualStyleBackColor = true;
+            this.SetMinButton.Click += new System.EventHandler(this.SetMinButton_Click);
             // 
             // SetMaxButton
             // 
@@ -427,10 +428,11 @@ namespace TablePlugin.Forms
             this.SetMaxButton.TabIndex = 15;
             this.SetMaxButton.Text = "Максимумы";
             this.SetMaxButton.UseVisualStyleBackColor = true;
+            this.SetMaxButton.Click += new System.EventHandler(this.SetMaxButton_Click);
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button1);
+            this.groupBox4.Controls.Add(this.DefaultButton);
             this.groupBox4.Controls.Add(this.SetMinButton);
             this.groupBox4.Controls.Add(this.SetMaxButton);
             this.groupBox4.Location = new System.Drawing.Point(346, 223);
@@ -440,14 +442,15 @@ namespace TablePlugin.Forms
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Параметры по умолчанию";
             // 
-            // button1
+            // DefaultButton
             // 
-            this.button1.Location = new System.Drawing.Point(11, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 32);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "По умолчанию";
-            this.button1.UseVisualStyleBackColor = true;
+            this.DefaultButton.Location = new System.Drawing.Point(11, 20);
+            this.DefaultButton.Name = "DefaultButton";
+            this.DefaultButton.Size = new System.Drawing.Size(134, 32);
+            this.DefaultButton.TabIndex = 16;
+            this.DefaultButton.Text = "По умолчанию";
+            this.DefaultButton.UseVisualStyleBackColor = true;
+            this.DefaultButton.Click += new System.EventHandler(this.DefaultButton_Click);
             // 
             // groupBox3
             // 
@@ -516,7 +519,7 @@ namespace TablePlugin.Forms
             this.holeRadius.Size = new System.Drawing.Size(64, 20);
             this.holeRadius.TabIndex = 14;
             this.holeRadius.Value = new decimal(new int[] {
-            30,
+            25,
             0,
             0,
             0});
@@ -538,7 +541,7 @@ namespace TablePlugin.Forms
             this.holeParamY.Size = new System.Drawing.Size(64, 20);
             this.holeParamY.TabIndex = 13;
             this.holeParamY.Value = new decimal(new int[] {
-            600,
+            400,
             0,
             0,
             0});
@@ -565,7 +568,7 @@ namespace TablePlugin.Forms
             this.holeParamX.Size = new System.Drawing.Size(63, 20);
             this.holeParamX.TabIndex = 12;
             this.holeParamX.Value = new decimal(new int[] {
-            1870,
+            900,
             0,
             0,
             0});
@@ -659,7 +662,7 @@ namespace TablePlugin.Forms
         private System.Windows.Forms.Button SetMaxButton;
         private System.Windows.Forms.ComboBox legsType;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button DefaultButton;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;

@@ -9,7 +9,8 @@ namespace TablePlugin.BLL.Models
     {
         private double _min;
         private double _max;
-        private ParametersType _name;
+        private ParametersType _logicalName;
+        private string _name;
 
         /// <summary>
         /// Минимальное значение.
@@ -22,8 +23,13 @@ namespace TablePlugin.BLL.Models
         public double Max { get => _max; internal set => _max = value; }
 
         /// <summary>s6
-        /// Имя параметра.
+        /// Логическое имя параметра.
         /// </summary>
-        public ParametersType Name { get => _name; internal set => _name = value; }
+        public ParametersType LogicalName { get => _logicalName; internal set => _logicalName = value; }
+
+        /// <summary>s6
+        /// Имя имя параметра.
+        /// </summary>
+        public string Name { get => _name; internal set => _name = value; }
     }
 }

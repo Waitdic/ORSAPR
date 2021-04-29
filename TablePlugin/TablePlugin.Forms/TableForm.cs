@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using TablePlugin.BLL;
 using TablePlugin.BLL.Enums;
@@ -15,6 +18,7 @@ namespace TablePlugin.Forms
         {
             InitializeComponent();
             ChangeFormLocation(true);
+            legsType.SelectedIndex = 0;
         }
 
         private void BuildButton_Click(object sender, EventArgs e)
@@ -47,10 +51,9 @@ namespace TablePlugin.Forms
                     };
                 }
             }
-            catch (Exception exception)
+            catch (ArgumentException ex)
             {
-                Console.WriteLine(exception);
-                throw;
+                MessageBox.Show(ex.Message);
             }
             
             _builder = _builder ?? new TableBuilder();
@@ -65,10 +68,6 @@ namespace TablePlugin.Forms
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            NameOfSize.Text = legsType.SelectedIndex == 0 
-                ? "Диаметр основания"
-                : "Длина стороны основания";
-
             switch (legsType.SelectedIndex)
             {
                 case 0:
@@ -101,6 +100,51 @@ namespace TablePlugin.Forms
                 BuildButton.Location = new Point(BuildButton.Location.X, BuildButton.Location.Y + changedSize);
                 this.Size = new Size(this.Size.Width, this.Size.Height + changedSize);
             }
+        }
+
+        private void SetMinButton_Click(object sender, EventArgs e)
+        {
+            SetMinMaxParameters(x => x.Min);
+        }
+
+        private void SetMaxButton_Click(object sender, EventArgs e)
+        {
+            SetMinMaxParameters(x => x.Max);
+        }
+
+        private void DefaultButton_Click(object sender, EventArgs e)
+        {
+            tableTopLength.Value = 1500m;
+            tableTopWidth.Value = 700m;
+            tableTopHeight.Value = 35m;
+
+            holeRadius.Value = 25m;
+            holeParamX.Value = 900m;
+            holeParamY.Value = 400m;
+
+            tableLegsHeight.Value = 650m;
+            tableLegsNumber.Value = 4m;
+            SizeValue.Value = 50m;
+        }
+
+        private void SetMinMaxParameters(Func<AdditionalParameters, double> predicate)
+        {
+            var parameters = new TableParameters();
+            var limits = parameters.AdditionalParameters;
+
+            tableTopLength.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableTopLength).Select(predicate).FirstOrDefault();
+            tableTopWidth.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableTopWidth).Select(predicate).FirstOrDefault();
+            tableTopHeight.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableTopHeight).Select(predicate).FirstOrDefault();
+
+            holeRadius.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.HoleRadius).Select(predicate).FirstOrDefault();
+            holeParamX.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.HoleParamX).Select(predicate).FirstOrDefault();
+            holeParamY.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.HoleParamY).Select(predicate).FirstOrDefault();
+
+            tableLegsHeight.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableLegsHeight).Select(predicate).FirstOrDefault();
+            tableLegsNumber.Value = (decimal)limits.Where(x => x.LogicalName == ParametersType.TableLegsNumber).Select(predicate).FirstOrDefault();
+            SizeValue.Value = legsType.SelectedIndex == 0
+                ? (decimal)limits.Where(x => x.LogicalName == ParametersType.TableLegsDiameter).Select(predicate).FirstOrDefault()
+                : (decimal)limits.Where(x => x.LogicalName == ParametersType.TableLegsSideLength).Select(predicate).FirstOrDefault();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace TablePlugin.BLL.Models
             get => _length;
             set
             {
-                ValidateToDoubleValue(value);
+                ValidateToDoubleValue(value, "Длина столешницы");
                 _length = value;
             }
         }
@@ -32,7 +32,7 @@ namespace TablePlugin.BLL.Models
             get => _width;
             set
             {
-                ValidateToDoubleValue(value);
+                ValidateToDoubleValue(value, "Ширина столешницы");
                 _width = value;
             }
         }
@@ -45,7 +45,7 @@ namespace TablePlugin.BLL.Models
             get => _height;
             set
             {
-                ValidateToDoubleValue(value);
+                ValidateToDoubleValue(value, "Высота столешницы");
                 _height = value;
             }
         }
@@ -54,15 +54,17 @@ namespace TablePlugin.BLL.Models
         /// Проверка присваиваемого значения на double.
         /// </summary>
         /// <param name="value">Присваиваемая переменная.</param>
-        private static void ValidateToDoubleValue(double value)
+        /// <param name="name">Имя параметра.</param>
+        private static void ValidateToDoubleValue(double value, string name)
         {
             if (double.IsNaN(value) || double.IsInfinity(value))
             {
-                throw new ArgumentException("Значение double не является числом");
+                throw new ArgumentException("Значение не является числом типа double!");
             }
-            else if (value <= 0)
+           
+            if (value <= 0)
             {
-                throw new ArgumentException("Значение double меньше или равно нулю");
+                throw new ArgumentException($"{name} не может быть меньше или равна нулю!");
             }
         }
     } 

@@ -48,7 +48,7 @@
     <Compile Include="Models\TableHoleParameters.cs" />
     <Compile Include="Models\TableLegsParameters.cs" />
     <Compile Include="Models\TableParameters.cs" />
-    <Compile Include="Models\TableTop.cs" />
+    <Compile Include="Models\TableTopParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableBuilder.cs" />
   </ItemGroup>
