@@ -15,7 +15,6 @@ namespace TablePlugin.BLL
         public KompasConnector()
         {
 			KsObject = (KompasObject)Activator.CreateInstance(Type.GetTypeFromProgID("KOMPAS.Application.5"));
-
 			KsObject.Visible = true;
 			KsObject.ActivateControllerAPI();
 

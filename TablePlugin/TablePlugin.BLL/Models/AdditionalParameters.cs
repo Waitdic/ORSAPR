@@ -1,11 +1,9 @@
-﻿using TablePlugin.BLL.Enums;
-
-namespace TablePlugin.BLL.Models
+﻿namespace TablePlugin.BLL.Models
 {
     /// <summary>
-    /// Класс дополнительных параметров для стола.
+    /// Дополнительных параметров для стола.
     /// </summary>
-    public class AdditionalParameters
+    public struct AdditionalParameters
     {
         private double _min;
         private double _max;

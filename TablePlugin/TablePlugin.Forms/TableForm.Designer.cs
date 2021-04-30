@@ -42,7 +42,7 @@ namespace TablePlugin.Forms
             this.tableTopWidth = new System.Windows.Forms.NumericUpDown();
             this.tableTopLength = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.legsType = new System.Windows.Forms.ComboBox();
+            this.LegsTypeComboBox = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.tableLegsNumber = new System.Windows.Forms.NumericUpDown();
@@ -248,7 +248,7 @@ namespace TablePlugin.Forms
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.legsType);
+            this.groupBox2.Controls.Add(this.LegsTypeComboBox);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.tableLegsNumber);
@@ -266,17 +266,17 @@ namespace TablePlugin.Forms
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ножки";
             // 
-            // legsType
+            // LegsTypeComboBox
             // 
-            this.legsType.FormattingEnabled = true;
-            this.legsType.Items.AddRange(new object[] {
+            this.LegsTypeComboBox.FormattingEnabled = true;
+            this.LegsTypeComboBox.Items.AddRange(new object[] {
             "Круглые",
             "Квадратные"});
-            this.legsType.Location = new System.Drawing.Point(12, 103);
-            this.legsType.Name = "legsType";
-            this.legsType.Size = new System.Drawing.Size(87, 21);
-            this.legsType.TabIndex = 23;
-            this.legsType.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.LegsTypeComboBox.Location = new System.Drawing.Point(12, 103);
+            this.LegsTypeComboBox.Name = "LegsTypeComboBox";
+            this.LegsTypeComboBox.Size = new System.Drawing.Size(87, 21);
+            this.LegsTypeComboBox.TabIndex = 23;
+            this.LegsTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.LegsTypeComboBox_SelectedIndexChanged);
             // 
             // label18
             // 
@@ -660,7 +660,7 @@ namespace TablePlugin.Forms
         private System.Windows.Forms.NumericUpDown tableLegsHeight;
         private System.Windows.Forms.Button SetMinButton;
         private System.Windows.Forms.Button SetMaxButton;
-        private System.Windows.Forms.ComboBox legsType;
+        private System.Windows.Forms.ComboBox LegsTypeComboBox;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button DefaultButton;
         private System.Windows.Forms.GroupBox groupBox3;

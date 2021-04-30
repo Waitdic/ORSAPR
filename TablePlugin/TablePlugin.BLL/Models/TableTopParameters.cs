@@ -19,8 +19,8 @@ namespace TablePlugin.BLL.Models
             get => _length;
             set
             {
-                ValidateToDoubleValue(value, "Длина столешницы");
-                _length = value;
+                ValidateValue(value, "Длина столешницы");
+                _length = Math.Truncate(value);
             }
         }
 
@@ -32,8 +32,8 @@ namespace TablePlugin.BLL.Models
             get => _width;
             set
             {
-                ValidateToDoubleValue(value, "Ширина столешницы");
-                _width = value;
+                ValidateValue(value, "Ширина столешницы");
+                _width = Math.Truncate(value);
             }
         }
 
@@ -45,23 +45,28 @@ namespace TablePlugin.BLL.Models
             get => _height;
             set
             {
-                ValidateToDoubleValue(value, "Высота столешницы");
-                _height = value;
+                ValidateValue(value, "Высота столешницы");
+                _height = Math.Truncate(value);
             }
         }
 
         /// <summary>
-        /// Проверка присваиваемого значения на double.
+        /// Проверка присваиваемого значения.
         /// </summary>
         /// <param name="value">Присваиваемая переменная.</param>
         /// <param name="name">Имя параметра.</param>
-        private static void ValidateToDoubleValue(double value, string name)
+        private static void ValidateValue(double value, string name)
         {
-            if (double.IsNaN(value) || double.IsInfinity(value))
+            //if (double.IsNaN(value) || double.IsInfinity(value))
+            //{
+            //    throw new ArgumentException("Значение не является числом типа double");
+            //}
+
+            if (Math.Abs(value - Math.Truncate(value)) > 0.001d)
             {
-                throw new ArgumentException("Значение не является числом типа double!");
+                throw new ArgumentException($"Значение поля '{name}' не может быть дробным");
             }
-           
+
             if (value <= 0)
             {
                 throw new ArgumentException($"{name} не может быть меньше или равна нулю!");

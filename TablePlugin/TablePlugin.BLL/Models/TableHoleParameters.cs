@@ -19,7 +19,7 @@ namespace TablePlugin.BLL.Models
             get => _radius;
             set
             {
-                ValidateToDoubleValue(value, "Радиус отверстия");
+                ValidateValue(value, "Радиус отверстия");
                 _radius = value;
             }
         }
@@ -32,7 +32,7 @@ namespace TablePlugin.BLL.Models
             get => _paramY;
             set
             {
-                ValidateToDoubleValue(value, "Расстояние по ширине до центра отверстия");
+                ValidateValue(value, "Расстояние по ширине до центра отверстия");
                 _paramY = value;
             }
         }
@@ -45,7 +45,7 @@ namespace TablePlugin.BLL.Models
             get => _paramX;
             set
             {
-                ValidateToDoubleValue(value, "Расстояние по длине до центра отверстия");
+                ValidateValue(value, "Расстояние по длине до центра отверстия");
                 _paramX = value;
             } 
         }
@@ -55,11 +55,16 @@ namespace TablePlugin.BLL.Models
         /// </summary>
         /// <param name="value">Присваиваемая переменная.</param>
         /// <param name="name">Имя параметра.</param>
-        private static void ValidateToDoubleValue(double value, string name)
+        private static void ValidateValue(double value, string name)
         {
-            if (double.IsNaN(value) || double.IsInfinity(value))
+            //if (double.IsNaN(value) || double.IsInfinity(value))
+            //{
+            //    throw new ArgumentException("Значение не является числом типа double");
+            //}
+
+            if (Math.Abs(value - Math.Truncate(value)) > 0.001d)
             {
-                throw new ArgumentException("Значение double не является числом");
+                throw new ArgumentException($"Значение поля '{name}' не может быть дробным");
             }
 
             if (value <= 0)

@@ -20,7 +20,7 @@ namespace TablePlugin.Forms
         {
             InitializeComponent();
             ChangeFormLocation(true);
-            legsType.SelectedIndex = 0;
+            LegsTypeComboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace TablePlugin.Forms
                 {
                     Height = (double) tableLegsHeight.Value,
                     Number = (int) tableLegsNumber.Value,
-                    Type = legsType.SelectedIndex == 0 ? LegsType.RoundLegs : LegsType.SquareLegs,
+                    Type = LegsTypeComboBox.SelectedIndex == 0 ? LegsType.RoundLegs : LegsType.SquareLegs,
                     Value = (double) SizeValue.Value
                 };
 
@@ -55,14 +55,14 @@ namespace TablePlugin.Forms
                         ParamY = (double)holeParamY.Value
                     };
                 }
+
+                _builder = _builder ?? new TableBuilder();
+                _builder.Build(parameters);
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
-            _builder = _builder ?? new TableBuilder();
-            _builder.Build(parameters);
         }
 
         /// <summary>
@@ -77,9 +77,9 @@ namespace TablePlugin.Forms
         /// <summary>
         /// Обработчик комбобокса "Тип ножек"
         /// </summary>
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void LegsTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (legsType.SelectedIndex)
+            switch (LegsTypeComboBox.SelectedIndex)
             {
                 case 0:
                     NameOfSize.Text = "Диаметр основания";
@@ -166,7 +166,7 @@ namespace TablePlugin.Forms
 
             tableLegsHeight.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableLegsHeight).Select(predicate).FirstOrDefault();
             tableLegsNumber.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableLegsNumber).Select(predicate).FirstOrDefault();
-            SizeValue.Value = legsType.SelectedIndex == 0
+            SizeValue.Value = LegsTypeComboBox.SelectedIndex == 0
                 ? (decimal)limits.Where(x => x.Key == ParametersType.TableLegsDiameter).Select(predicate).FirstOrDefault()
                 : (decimal)limits.Where(x => x.Key == ParametersType.TableLegsSideLength).Select(predicate).FirstOrDefault();
         }
