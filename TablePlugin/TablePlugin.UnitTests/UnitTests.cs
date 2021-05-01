@@ -117,5 +117,40 @@ namespace TablePlugin.UnitTests
                 parameters.Value = parameter == "Value" ? value : 50;
             }, exception);
         }
+        
+        [TestCase(650.05d, ParametersType.TableTopLength)]
+        [TestCase(50.05d, ParametersType.TableTopWidth)]
+        [TestCase(-1, ParametersType.TableTopHeight)]
+        public void TableParameters_WrongArgument_ThrowsExceptionResult(double value,  ParametersType parameter,)
+        {
+            // SetUp
+            var parameters = new TableParameters();
+
+            // Assert
+            Assert.Throws<ArgumentException>(() =>
+            {
+                // Act
+                parameters.TableTop = new TableTopParameters
+                {
+                    Length =  parameter == ParametersType.TableTopLength ? tableTopLength.Value,
+                    Width = parameter == ParametersType.TableTopWidth ? tableTopWidth.Value,
+                    Height = parameter == ParametersType.TableTopHeight ? tableTopHeight.Value
+                };
+
+                parameters.TabLegs = new TableLegsParameters
+                {
+                    Height = parameter == ParametersType.TableLegsHeight ? tableLegsHeight.Value,
+                    Number = parameter == ParametersType.TableLegsNumber ?  (int) tableLegsNumber.Value,
+                    Value = parameter == ParametersType.TableLegsDiameter ? SizeValue.Value
+                };
+
+                parameters.TableHole = new TableHoleParameters
+                {
+                    Radius = parameter == ParametersType.HoleRadius ? holeRadius.Value,
+                    ParamX = parameter == ParametersType.HoleParamX ? holeParamX.Value,
+                    ParamY = parameter == ParametersType.HoleParamY ? holeParamY.Value
+                };
+            }, exception);
+        }
     }
 }
