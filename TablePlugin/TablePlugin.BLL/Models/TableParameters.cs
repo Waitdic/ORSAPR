@@ -86,10 +86,19 @@ namespace TablePlugin.BLL.Models
             get => _tableLegs;
             set
             {
-                if (Math.Abs(_tableTop.Length - 2000) < 1d)
+                if (_tableTop.Length >= 2000d)
                 {
-                    var number = _additionalParameters.FirstOrDefault(x => x.Key == ParametersType.TableLegsNumber).Value;
-                    number.Min = number.Max;
+                    var number = _additionalParameters
+                        .FirstOrDefault(x => x.Key == ParametersType.TableLegsNumber)
+                        .Value;
+                    number.Min = 5;
+                }
+                else
+                {
+                    var number = _additionalParameters
+                        .FirstOrDefault(x => x.Key == ParametersType.TableLegsNumber)
+                        .Value;
+                    number.Min = 4;
                 }
 
                 var container = new Dictionary<ParametersType, double>

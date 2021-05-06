@@ -3,7 +3,7 @@
     /// <summary>
     /// Дополнительных параметров для стола.
     /// </summary>
-    public struct AdditionalParameters
+    public class AdditionalParameters
     {
         private double _min;
         private double _max;

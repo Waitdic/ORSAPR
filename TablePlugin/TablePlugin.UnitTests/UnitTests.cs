@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using TablePlugin.BLL.Enums;
 using TablePlugin.BLL.Models;
@@ -15,27 +16,25 @@ namespace TablePlugin.UnitTests
             var parameters = new TableParameters();
 
             // Act
-            parameters.TableTop = new TableTopParameters
-            {
-                Length = 1500,
-                Width = 700,
-                Height = 35,
-            };
+            SetCorrectParameters(parameters);
+        }
+        
+        [Test, Description("Тест на параметров параметров класса TableParameters. Позитивный тест.")]
+        public void TableParameters_GetParameters_CorrectResult()
+        {
+            // SetUp
+            var parameters = new TableParameters();
 
-            parameters.TabLegs = new TableLegsParameters
-            {
-                Height = 650,
-                Number = 4,
-                Type = LegsType.RoundLegs,
-                Value = 50
-            };
+            // Act
+            SetCorrectParameters(parameters);
+            var top = parameters.TableTop;
+            var legs = parameters.TabLegs;
+            var hole = parameters.TableHole;
 
-            parameters.TableHole = new TableHoleParameters
-            {
-                Radius = 25,
-                ParamX = 900,
-                ParamY = 400
-            };
+            // Assert
+            Assert.NotNull(top);
+            Assert.NotNull(legs);
+            Assert.NotNull(hole);
         }
 
         [Test, Description("Тест на получение списка с дополнительными параметрами. Позитивный тест.")]
@@ -118,39 +117,98 @@ namespace TablePlugin.UnitTests
             }, exception);
         }
         
-        [TestCase(650.05d, ParametersType.TableTopLength)]
-        [TestCase(50.05d, ParametersType.TableTopWidth)]
-        [TestCase(-1, ParametersType.TableTopHeight)]
-        public void TableParameters_WrongArgument_ThrowsExceptionResult(double value,  ParametersType parameter,)
+        [TestCase(900, ParametersType.TableTopLength)]
+        [TestCase(500, ParametersType.TableTopWidth)]
+        [TestCase(20, ParametersType.TableTopHeight)]
+        [TestCase(500, ParametersType.TableLegsHeight)]
+        [TestCase(3, ParametersType.TableLegsNumber)]
+        [TestCase(30, ParametersType.TableLegsDiameter)]
+        [TestCase(10, ParametersType.HoleRadius)]
+        [TestCase(110, ParametersType.HoleParamX)]
+        [TestCase(80, ParametersType.HoleParamY)]
+        public void TableParameters_WrongArgument_ThrowsExceptionResult(double value,  ParametersType parameter)
         {
             // SetUp
             var parameters = new TableParameters();
-
+            var addInfo = parameters.AdditionalParameters.FirstOrDefault(x => x.Key == parameter).Value;
+            
             // Assert
             Assert.Throws<ArgumentException>(() =>
             {
                 // Act
                 parameters.TableTop = new TableTopParameters
                 {
-                    Length =  parameter == ParametersType.TableTopLength ? tableTopLength.Value,
-                    Width = parameter == ParametersType.TableTopWidth ? tableTopWidth.Value,
-                    Height = parameter == ParametersType.TableTopHeight ? tableTopHeight.Value
+                    Length =  parameter == ParametersType.TableTopLength ? value : 1500,
+                    Width = parameter == ParametersType.TableTopWidth ? value : 700,
+                    Height = parameter == ParametersType.TableTopHeight ? value : 40,
                 };
 
                 parameters.TabLegs = new TableLegsParameters
                 {
-                    Height = parameter == ParametersType.TableLegsHeight ? tableLegsHeight.Value,
-                    Number = parameter == ParametersType.TableLegsNumber ?  (int) tableLegsNumber.Value,
-                    Value = parameter == ParametersType.TableLegsDiameter ? SizeValue.Value
+                    Height = parameter == ParametersType.TableLegsHeight ? value : 650,
+                    Number = parameter == ParametersType.TableLegsNumber ?  (int) value : 4,
+                    Value = parameter == ParametersType.TableLegsDiameter ? value : 50,
                 };
 
                 parameters.TableHole = new TableHoleParameters
                 {
-                    Radius = parameter == ParametersType.HoleRadius ? holeRadius.Value,
-                    ParamX = parameter == ParametersType.HoleParamX ? holeParamX.Value,
-                    ParamY = parameter == ParametersType.HoleParamY ? holeParamY.Value
+                    Radius = parameter == ParametersType.HoleRadius ? value : 25,
+                    ParamX = parameter == ParametersType.HoleParamX ? value : 900,
+                    ParamY = parameter == ParametersType.HoleParamY ? value : 400,
                 };
-            }, exception);
+            }, $"Значение '{addInfo.Name}' должно быть в диапозоне от {addInfo.Min} до {addInfo.Max}." );
+        }
+        
+        [Test]
+        public void TableParameters_WrongNumberOfLegs_ThrowsExceptionResult()
+        {
+            // SetUp
+            var parameters = new TableParameters();
+            
+            // Assert
+            Assert.Throws<ArgumentException>(() =>
+            {
+                // Act
+                parameters.TableTop = new TableTopParameters
+                {
+                    Length = 2000,
+                    Width = 700,
+                    Height = 40,
+                };
+
+                parameters.TabLegs = new TableLegsParameters
+                {
+                    Height = 650,
+                    Number = 4,
+                    Value = 50,
+                };
+                
+            }, "Значение 'Количество ножек' должно быть в диапозоне от 5 до 5." );
+        }
+
+        private static void SetCorrectParameters(TableParameters parameters)
+        {
+            parameters.TableTop = new TableTopParameters
+            {
+                Length = 1500,
+                Width = 700,
+                Height = 35,
+            };
+
+            parameters.TabLegs = new TableLegsParameters
+            {
+                Height = 650,
+                Number = 4,
+                Type = LegsType.RoundLegs,
+                Value = 50
+            };
+
+            parameters.TableHole = new TableHoleParameters
+            {
+                Radius = 25,
+                ParamX = 900,
+                ParamY = 400
+            };
         }
     }
 }
