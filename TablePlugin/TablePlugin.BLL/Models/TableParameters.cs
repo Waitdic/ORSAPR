@@ -74,6 +74,17 @@ namespace TablePlugin.BLL.Models
                     { ParametersType.HoleParamY, value.ParamY },
                 });
 
+                if (_tableLegs.Number == 5 || Math.Abs(_tableTop.Length - 2000d) < 0.001)
+                { 
+                    var leftX = (_tableTop.Length / 2) - (_tableLegs.Value / 2) - value.Radius - 20;
+                    var rightX = (_tableTop.Length / 2) + (_tableLegs.Value / 2) + value.Radius + 20;
+                    var leftY = (_tableTop.Width / 2) - (_tableLegs.Value / 2) - value.Radius - 20;
+                    var rightY = (_tableTop.Width / 2) + (_tableLegs.Value / 2) + value.Radius + 20;
+
+                    CheckCrossingOfRange(leftX, rightX, value.ParamX, "Расстояние по длине");
+                    CheckCrossingOfRange(leftY, rightY, value.ParamY, "Расстояние по ширине");
+                }
+
                 _tableHole = value;
             }
         }
@@ -86,21 +97,14 @@ namespace TablePlugin.BLL.Models
             get => _tableLegs;
             set
             {
-                if (_tableTop.Length >= 2000d)
+                if (Math.Abs(_tableTop.Length - 2000d) < 0.001)
                 {
                     var number = _additionalParameters
                         .FirstOrDefault(x => x.Key == ParametersType.TableLegsNumber)
                         .Value;
                     number.Min = 5;
                 }
-                else
-                {
-                    var number = _additionalParameters
-                        .FirstOrDefault(x => x.Key == ParametersType.TableLegsNumber)
-                        .Value;
-                    number.Min = 4;
-                }
-
+               
                 var container = new Dictionary<ParametersType, double>
                 {
                     {ParametersType.TableLegsHeight, value.Height},
@@ -137,6 +141,21 @@ namespace TablePlugin.BLL.Models
                     throw new ArgumentException($"Значение '{param.Name}' должно быть в диапозоне от {param.Min} до {param.Max}.");
                 }
             } 
+        }
+
+        /// <summary>
+        /// Проверка на пересечение диапозона.
+        /// </summary>
+        /// <param name="left">Левое ограничение координат.</param>
+        /// <param name="right">Правое ограничение координат.</param>
+        /// <param name="param">Значение координат.</param>
+        /// <param name="name">Имя првоверяемого поля.</param>
+        private void CheckCrossingOfRange(double left, double right, double param, string name)
+        {
+            if (left < param && param < right)
+            {
+                throw new ArgumentException($"Значение '{name}' не должно пересекать диапозоне от {left} до {right}.");
+            }
         }
     }
 }
