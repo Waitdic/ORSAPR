@@ -10,8 +10,19 @@ namespace TablePlugin.BLL.Models
     /// </summary>
     public class TableParameters
     {
+        /// <summary>
+        /// Параметры столешницы.
+        /// </summary>
         private TableTopParameters _tableTop;
+        
+        /// <summary>
+        /// Параметры отверстия в столешнице.
+        /// </summary>
         private TableHoleParameters _tableHole;
+       
+        /// <summary>
+        /// Параметры отверстия в столешнице.
+        /// </summary>
         private TableLegsParameters _tableLegs;
 
         /// <summary>

@@ -6,6 +6,9 @@ using TablePlugin.BLL.Models;
 
 namespace TablePlugin.UnitTests
 {
+    /// <summary>
+    /// Тесты для проверки TableParameters.
+    /// </summary>
     [TestFixture]
     public class TableParametersTests
     {
@@ -250,6 +253,10 @@ namespace TablePlugin.UnitTests
             }, $"Значение '{name}' не должно пересекать диапозоне от {range[0]} до {range[1]}.");
         }
 
+        /// <summary>
+        /// Метод для заполнение параметров объект класса TableParameters.
+        /// </summary>
+        /// <param name="parameters">Объект класса TableParameters</param>
         private static void SetCorrectParameters(TableParameters parameters)
         {
             parameters.TableTop = new TableTopParameters

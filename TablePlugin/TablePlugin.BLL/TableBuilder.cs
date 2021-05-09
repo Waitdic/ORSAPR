@@ -62,10 +62,10 @@ namespace TablePlugin.BLL
             rectangleParam.style = 1;
             doc2D.ksRectangle(rectangleParam);
 
-            // Конец редактирования эскиза
+            // Конец редактирования эскиза.
             sketchDef.EndEdit();
             
-            // Выдавить
+            // Выдавить.
             PressOutSketch(sketchDef, _parameters.TableTop.Height);
         }
 
@@ -82,7 +82,7 @@ namespace TablePlugin.BLL
             var x = _parameters.TabLegs.Number != 5 ? new double[4] : new double[5];
             var y = _parameters.TabLegs.Number != 5 ? new double[4] : new double[5];
 
-            // Создание примитив основания ножки по параметрам.
+            // Создание примитива основания ножек по параметрам.
             if (_parameters.TabLegs.Type == LegsType.RoundLegs)
             {
                 x[0] = 20 + (_parameters.TabLegs.Value / 2);
@@ -96,13 +96,14 @@ namespace TablePlugin.BLL
 
                 x[3] = _parameters.TableTop.Length - 20 - (_parameters.TabLegs.Value / 2);
                 y[3] = 20 + (_parameters.TabLegs.Value / 2);
-
+                
                 if (x.Length == 5)
                 {
                     x[4] = (_parameters.TableTop.Length / 2);
                     y[4] = (_parameters.TableTop.Width / 2);
                 }
 
+                // Создание окружностей основания ножек.
                 for (var i = 0; i < x.Length; i++)
                 {
                     doc2D.ksCircle(x[i], y[i], _parameters.TabLegs.Value / 2, 1);
@@ -128,6 +129,7 @@ namespace TablePlugin.BLL
                     y[4] = (_parameters.TableTop.Width / 2) - (_parameters.TabLegs.Value / 2);
                 }
 
+                // Создание квадратов основания ножек.
                 for (var i = 0; i < x.Length; i++)
                 {
                     var rectangleParam = (ksRectangleParam)_connector.KsObject.GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
@@ -141,10 +143,10 @@ namespace TablePlugin.BLL
                 }
             }
 
-            // Конец редактирования эскиза
+            // Конец редактирования эскиза.
             sketchDef.EndEdit();
 
-            // Выдавить
+            // Выдавить.
             PressOutSketch(sketchDef, _parameters.TabLegs.Height, side: false);
         }
 
@@ -180,27 +182,30 @@ namespace TablePlugin.BLL
             // Выдавливание по типу
             var extrusionEntity = (ksEntity)_connector.Part.NewEntity((short)type);
 
-            // интерфейс свойств базовой операции выдавливания
+            // интерфейс свойств базовой операции выдавливания.
             if (type == ksObj3dTypeEnum.o3d_bossExtrusion)
             {
                 var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
+                // Параметры выдавливания.
                 extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
                 extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
 
-                // эскиз операции выдавливания
+                // эскиз операции выдавливания.
                 extrusionDef.SetSketch(sketchDef);
             }
             else if (type == ksObj3dTypeEnum.o3d_cutExtrusion)
             { 
                 var extrusionDef = (ksCutExtrusionDefinition)extrusionEntity.GetDefinition();
+                // параметры выдаливания.
                 extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
+                // Тип направления.
                 extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
 
-                // эскиз операции вырезания по выдавливанию
+                // эскиз операции вырезания по выдавливанию.
                 extrusionDef.SetSketch(sketchDef);
             }
 
-            // создать операцию
+            // создать операцию.
             extrusionEntity.Create();
         }
 
@@ -211,10 +216,12 @@ namespace TablePlugin.BLL
         /// <returns>ksSketchDefinition.</returns>
         private ksSketchDefinition CreateSketch(Obj3dType planeType)
         {
-            // Выбор плоскости
+            // Выбор плоскости.
             var plane = (ksEntity)_connector.Part.GetDefaultEntity((short)planeType);
+            // Создание эскиза.
             var sketch = (ksEntity)_connector.Part.NewEntity((short)Obj3dType.o3d_sketch);
             ksSketchDefinition sketchDef = sketch.GetDefinition();
+            // Устаналвливаем эскизу рабочую плоскость.
             sketchDef.SetPlane(plane);
             sketch.Create();
 
