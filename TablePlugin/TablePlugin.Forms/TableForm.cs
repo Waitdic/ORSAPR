@@ -102,17 +102,39 @@ namespace TablePlugin.Forms
             var changedSize = (holeGroupBox.Size.Height + 15);
             if (turnOff)
             {
-                ledsGroupBox.Location = new Point(ledsGroupBox.Location.X, ledsGroupBox.Location.Y - changedSize);
-                buttonGroupBox.Location = new Point(buttonGroupBox.Location.X, buttonGroupBox.Location.Y - changedSize);
-                BuildButton.Location = new Point(BuildButton.Location.X, BuildButton.Location.Y - changedSize);
-                this.Size = new Size(this.Size.Width, this.Size.Height - changedSize);
+                ledsGroupBox.Location = new Point(
+                    ledsGroupBox.Location.X, 
+                    ledsGroupBox.Location.Y - changedSize);
+                
+                buttonGroupBox.Location = new Point(
+                    buttonGroupBox.Location.X, 
+                    buttonGroupBox.Location.Y - changedSize);
+                
+                BuildButton.Location = new Point(
+                    BuildButton.Location.X, 
+                    BuildButton.Location.Y - changedSize);
+                
+                Size = new Size(
+                    Size.Width, 
+                    Size.Height - changedSize);
             }
             else
             {
-                ledsGroupBox.Location = new Point(ledsGroupBox.Location.X, ledsGroupBox.Location.Y + changedSize);
-                buttonGroupBox.Location = new Point(buttonGroupBox.Location.X, buttonGroupBox.Location.Y + changedSize);
-                BuildButton.Location = new Point(BuildButton.Location.X, BuildButton.Location.Y + changedSize);
-                this.Size = new Size(this.Size.Width, this.Size.Height + changedSize);
+                ledsGroupBox.Location = new Point(
+                    ledsGroupBox.Location.X, 
+                    ledsGroupBox.Location.Y + changedSize);
+                
+                buttonGroupBox.Location = new Point(
+                    buttonGroupBox.Location.X, 
+                    buttonGroupBox.Location.Y + changedSize);
+                
+                BuildButton.Location = new Point(
+                    BuildButton.Location.X, 
+                    BuildButton.Location.Y + changedSize);
+                
+                Size = new Size(
+                    Size.Width, 
+                    Size.Height + changedSize);
             }
         }
 
@@ -159,19 +181,55 @@ namespace TablePlugin.Forms
             var parameters = new TableParameters();
             var limits = parameters.AdditionalParameters;
 
-            tableTopLength.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableTopLength).Select(expression).FirstOrDefault();
-            tableTopWidth.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableTopWidth).Select(expression).FirstOrDefault();
-            tableTopHeight.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableTopHeight).Select(expression).FirstOrDefault();
+            tableTopLength.Value = (decimal)limits
+                .Where(x => x.Key == ParametersType.TableTopLength)
+                .Select(expression)
+                .FirstOrDefault();
 
-            holeRadius.Value = (decimal)limits.Where(x => x.Key == ParametersType.HoleRadius).Select(expression).FirstOrDefault();
-            holeParamX.Value = (decimal)limits.Where(x => x.Key == ParametersType.HoleParamX).Select(expression).FirstOrDefault();
-            holeParamY.Value = (decimal)limits.Where(x => x.Key == ParametersType.HoleParamY).Select(expression).FirstOrDefault();
+            tableTopWidth.Value = (decimal) limits
+                .Where(x => x.Key == ParametersType.TableTopWidth)
+                .Select(expression)
+                .FirstOrDefault();
+            
+            tableTopHeight.Value = (decimal) limits
+                .Where(x => x.Key == ParametersType.TableTopHeight)
+                .Select(expression)
+                .FirstOrDefault();
 
-            tableLegsHeight.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableLegsHeight).Select(expression).FirstOrDefault();
-            tableLegsNumber.Value = (decimal)limits.Where(x => x.Key == ParametersType.TableLegsNumber).Select(expression).FirstOrDefault();
+            holeRadius.Value = (decimal) limits
+                .Where(x => x.Key == ParametersType.HoleRadius)
+                .Select(expression)
+                .FirstOrDefault();
+            
+            holeParamX.Value = (decimal) limits
+                .Where(x => x.Key == ParametersType.HoleParamX)
+                .Select(expression)
+                .FirstOrDefault();
+            
+            holeParamY.Value = (decimal) limits
+                .Where(x => x.Key == ParametersType.HoleParamY)
+                .Select(expression)
+                .FirstOrDefault();
+
+            tableLegsHeight.Value = (decimal) limits
+                .Where(x => x.Key == ParametersType.TableLegsHeight)
+                .Select(expression)
+                .FirstOrDefault();
+            
+            tableLegsNumber.Value = (decimal) limits
+                .Where(x => x.Key == ParametersType.TableLegsNumber)
+                .Select(expression)
+                .FirstOrDefault();
+            
             SizeValue.Value = LegsTypeComboBox.SelectedIndex == 0
-                ? (decimal)limits.Where(x => x.Key == ParametersType.TableLegsDiameter).Select(expression).FirstOrDefault()
-                : (decimal)limits.Where(x => x.Key == ParametersType.TableLegsSideLength).Select(expression).FirstOrDefault();
+                ? (decimal) limits
+                    .Where(x => x.Key == ParametersType.TableLegsDiameter)
+                    .Select(expression)
+                    .FirstOrDefault()
+                : (decimal)limits
+                    .Where(x => x.Key == ParametersType.TableLegsSideLength)
+                    .Select(expression)
+                    .FirstOrDefault();
         }
     }
 }

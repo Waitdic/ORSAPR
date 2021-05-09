@@ -28,19 +28,54 @@ namespace TablePlugin.BLL.Models
         /// <summary>
         /// Допольнительные параметры стола.
         /// </summary>
-        private readonly Dictionary<ParametersType, AdditionalParameters> _additionalParameters = new Dictionary<ParametersType, AdditionalParameters>()
+        private readonly Dictionary<ParametersType, AdditionalParameters> _additionalParameters;
+
+        public TableParameters()
         {
-            { ParametersType.TableTopLength, new AdditionalParameters { Min = 1000, Max = 2000, Name = "Длина столешницы" } },
-            { ParametersType.TableTopWidth, new AdditionalParameters { Min = 600, Max = 800, Name = "Ширина столешницы" } },
-            { ParametersType.TableTopHeight, new AdditionalParameters { Min = 30, Max = 40, Name = "Высота столешницы" } },
-            { ParametersType.HoleParamX, new AdditionalParameters { Min = 120, Max = 1870, Name = "Расстояние по длине" } },
-            { ParametersType.HoleParamY, new AdditionalParameters { Min = 90, Max = 700, Name = "Расстояние по ширине" } },
-            { ParametersType.HoleRadius, new AdditionalParameters { Min = 20, Max = 30, Name = "Радиус отверстия" } },
-            { ParametersType.TableLegsHeight, new AdditionalParameters { Min = 600, Max = 700, Name = "Высота ножек" } },
-            { ParametersType.TableLegsNumber, new AdditionalParameters { Min = 4, Max = 5, Name = "Количество ножек" } },
-            { ParametersType.TableLegsDiameter, new AdditionalParameters { Min = 40, Max = 60, Name = "Диаметр основания ножек" } },
-            { ParametersType.TableLegsSideLength, new AdditionalParameters { Min = 40, Max = 60, Name = "Длина основания ножек" } },
-        };
+            _additionalParameters = new Dictionary<ParametersType, AdditionalParameters>
+            {
+                {
+                    ParametersType.TableTopLength, 
+                    new AdditionalParameters { Min = 1000, Max = 2000, Name = "Длина столешницы" }
+                },
+                {
+                    ParametersType.TableTopWidth, 
+                    new AdditionalParameters { Min = 600, Max = 800, Name = "Ширина столешницы" }
+                },
+                {
+                    ParametersType.TableTopHeight, 
+                    new AdditionalParameters { Min = 30, Max = 40, Name = "Высота столешницы" }
+                },
+                {
+                    ParametersType.HoleParamX, 
+                    new AdditionalParameters { Min = 120, Max = 1870, Name = "Расстояние по длине" }
+                },
+                {
+                    ParametersType.HoleParamY, 
+                    new AdditionalParameters { Min = 90, Max = 700, Name = "Расстояние по ширине" }
+                },
+                {
+                    ParametersType.HoleRadius, 
+                    new AdditionalParameters { Min = 20, Max = 30, Name = "Радиус отверстия" }
+                },
+                {
+                    ParametersType.TableLegsHeight, 
+                    new AdditionalParameters { Min = 600, Max = 700, Name = "Высота ножек" }
+                },
+                {
+                    ParametersType.TableLegsNumber, 
+                    new AdditionalParameters { Min = 4, Max = 5, Name = "Количество ножек" }
+                },
+                {
+                    ParametersType.TableLegsDiameter, 
+                    new AdditionalParameters { Min = 40, Max = 60, Name = "Диаметр основания ножек" }
+                },
+                {
+                    ParametersType.TableLegsSideLength,
+                    new AdditionalParameters { Min = 40, Max = 60, Name = "Длина основания ножек" }
+                },
+            };
+        }
 
         /// <summary>
         /// Параметры столешницы.
@@ -69,8 +104,13 @@ namespace TablePlugin.BLL.Models
             get => _tableHole;
             set
             {
-                var additionalParamX = _additionalParameters.FirstOrDefault(x => x.Key == ParametersType.HoleParamX).Value;
-                var additionalParamY = _additionalParameters.FirstOrDefault(x => x.Key == ParametersType.HoleParamY).Value;
+                var additionalParamX = _additionalParameters
+                    .FirstOrDefault(x => x.Key == ParametersType.HoleParamX)
+                    .Value;
+                
+                var additionalParamY = _additionalParameters
+                    .FirstOrDefault(x => x.Key == ParametersType.HoleParamY)
+                    .Value;
 
                 additionalParamX.Max = _tableTop.Length - value.Radius - 100;
                 additionalParamX.Min = value.Radius + 100;
@@ -146,10 +186,14 @@ namespace TablePlugin.BLL.Models
         {
             foreach (var keyValue in container)
             {
-                var param = _additionalParameters.FirstOrDefault(x => x.Key == keyValue.Key).Value;
+                var param = _additionalParameters
+                    .FirstOrDefault(x => x.Key == keyValue.Key)
+                    .Value;
+                
                 if (keyValue.Value < param.Min || keyValue.Value > param.Max)
                 {
-                    throw new ArgumentException($"Значение '{param.Name}' должно быть в диапозоне от {param.Min} до {param.Max}.");
+                    throw new ArgumentException(
+                        $"Значение '{param.Name}' должно быть в диапозоне от {param.Min} до {param.Max}.");
                 }
             } 
         }
@@ -161,11 +205,12 @@ namespace TablePlugin.BLL.Models
         /// <param name="right">Правое ограничение координат.</param>
         /// <param name="param">Значение координат.</param>
         /// <param name="name">Имя првоверяемого поля.</param>
-        private void CheckCrossingOfRange(double left, double right, double param, string name)
+        private static void CheckCrossingOfRange(double left, double right, double param, string name)
         {
             if (left < param && param < right)
             {
-                throw new ArgumentException($"Значение '{name}' не должно пересекать диапозоне от {left} до {right}.");
+                throw new ArgumentException(
+                    $"Значение '{name}' не должно пересекать диапозоне от {left} до {right}.");
             }
         }
     }
