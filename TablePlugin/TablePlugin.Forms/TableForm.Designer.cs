@@ -183,8 +183,8 @@ namespace TablePlugin.Forms
             // tableTopHeight
             // 
             this.tableTopHeight.Location = new System.Drawing.Point(333, 38);
-            this.tableTopHeight.Maximum = new decimal(new int[] {40, 0, 0, 0});
-            this.tableTopHeight.Minimum = new decimal(new int[] {30, 0, 0, 0});
+            this.tableTopHeight.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
+            this.tableTopHeight.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
             this.tableTopHeight.Name = "tableTopHeight";
             this.tableTopHeight.Size = new System.Drawing.Size(64, 20);
             this.tableTopHeight.TabIndex = 14;
@@ -193,8 +193,8 @@ namespace TablePlugin.Forms
             // tableTopWidth
             // 
             this.tableTopWidth.Location = new System.Drawing.Point(177, 40);
-            this.tableTopWidth.Maximum = new decimal(new int[] {800, 0, 0, 0});
-            this.tableTopWidth.Minimum = new decimal(new int[] {600, 0, 0, 0});
+            this.tableTopWidth.Maximum = new decimal(new int[] {10000000, 0, 0, 0});
+            this.tableTopWidth.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
             this.tableTopWidth.Name = "tableTopWidth";
             this.tableTopWidth.Size = new System.Drawing.Size(64, 20);
             this.tableTopWidth.TabIndex = 13;
@@ -202,9 +202,9 @@ namespace TablePlugin.Forms
             // 
             // tableTopLength
             // 
-            this.tableTopLength.Increment = new decimal(new int[] {100, 0, 0, 0});
             this.tableTopLength.Location = new System.Drawing.Point(13, 40);
             this.tableTopLength.Maximum = new decimal(new int[] {100000, 0, 0, 0});
+            this.tableTopLength.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
             this.tableTopLength.Name = "tableTopLength";
             this.tableTopLength.Size = new System.Drawing.Size(63, 20);
             this.tableTopLength.TabIndex = 12;
@@ -263,8 +263,8 @@ namespace TablePlugin.Forms
             // tableLegsNumber
             // 
             this.tableLegsNumber.Location = new System.Drawing.Point(179, 39);
-            this.tableLegsNumber.Maximum = new decimal(new int[] {5, 0, 0, 0});
-            this.tableLegsNumber.Minimum = new decimal(new int[] {4, 0, 0, 0});
+            this.tableLegsNumber.Maximum = new decimal(new int[] {100000, 0, 0, 0});
+            this.tableLegsNumber.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
             this.tableLegsNumber.Name = "tableLegsNumber";
             this.tableLegsNumber.Size = new System.Drawing.Size(80, 20);
             this.tableLegsNumber.TabIndex = 20;
@@ -283,8 +283,8 @@ namespace TablePlugin.Forms
             // SizeValue
             // 
             this.SizeValue.Location = new System.Drawing.Point(179, 102);
-            this.SizeValue.Maximum = new decimal(new int[] {60, 0, 0, 0});
-            this.SizeValue.Minimum = new decimal(new int[] {40, 0, 0, 0});
+            this.SizeValue.Maximum = new decimal(new int[] {100000, 0, 0, 0});
+            this.SizeValue.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
             this.SizeValue.Name = "SizeValue";
             this.SizeValue.Size = new System.Drawing.Size(80, 20);
             this.SizeValue.TabIndex = 16;
@@ -293,8 +293,8 @@ namespace TablePlugin.Forms
             // tableLegsHeight
             // 
             this.tableLegsHeight.Location = new System.Drawing.Point(12, 37);
-            this.tableLegsHeight.Maximum = new decimal(new int[] {700, 0, 0, 0});
-            this.tableLegsHeight.Minimum = new decimal(new int[] {600, 0, 0, 0});
+            this.tableLegsHeight.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
+            this.tableLegsHeight.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
             this.tableLegsHeight.Name = "tableLegsHeight";
             this.tableLegsHeight.Size = new System.Drawing.Size(87, 20);
             this.tableLegsHeight.TabIndex = 14;
@@ -431,8 +431,8 @@ namespace TablePlugin.Forms
             // holeRadius
             // 
             this.holeRadius.Location = new System.Drawing.Point(333, 38);
-            this.holeRadius.Maximum = new decimal(new int[] {30, 0, 0, 0});
-            this.holeRadius.Minimum = new decimal(new int[] {20, 0, 0, 0});
+            this.holeRadius.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
+            this.holeRadius.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
             this.holeRadius.Name = "holeRadius";
             this.holeRadius.Size = new System.Drawing.Size(64, 20);
             this.holeRadius.TabIndex = 14;
@@ -441,8 +441,8 @@ namespace TablePlugin.Forms
             // holeParamY
             // 
             this.holeParamY.Location = new System.Drawing.Point(177, 40);
-            this.holeParamY.Maximum = new decimal(new int[] {700, 0, 0, 0});
-            this.holeParamY.Minimum = new decimal(new int[] {90, 0, 0, 0});
+            this.holeParamY.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
+            this.holeParamY.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
             this.holeParamY.Name = "holeParamY";
             this.holeParamY.Size = new System.Drawing.Size(64, 20);
             this.holeParamY.TabIndex = 13;
@@ -450,10 +450,9 @@ namespace TablePlugin.Forms
             // 
             // holeParamX
             // 
-            this.holeParamX.Increment = new decimal(new int[] {10, 0, 0, 0});
             this.holeParamX.Location = new System.Drawing.Point(13, 40);
-            this.holeParamX.Maximum = new decimal(new int[] {1870, 0, 0, 0});
-            this.holeParamX.Minimum = new decimal(new int[] {120, 0, 0, 0});
+            this.holeParamX.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
+            this.holeParamX.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
             this.holeParamX.Name = "holeParamX";
             this.holeParamX.Size = new System.Drawing.Size(63, 20);
             this.holeParamX.TabIndex = 12;
@@ -496,7 +495,10 @@ namespace TablePlugin.Forms
             this.Controls.Add(this.ledsGroupBox);
             this.Controls.Add(this.topGroupBox);
             this.Controls.Add(this.BuildButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "TableForm";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "TablePlugin";
             this.topGroupBox.ResumeLayout(false);
             this.topGroupBox.PerformLayout();
