@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using TablePlugin.BLL;
 using TablePlugin.BLL.Enums;
@@ -14,7 +15,7 @@ namespace TablePlugin.Forms
         /// <summary>
         /// Объект для построения 3D Модели.
         /// </summary>
-        private TableBuilder _builder;
+        private Builder _builder;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TableForm"/> class.
@@ -53,14 +54,27 @@ namespace TablePlugin.Forms
                 {
                     parameters.TableHole = new TableHoleParameters
                     {
-                        Radius = (double)holeRadius.Value,
-                        ParamX = (double)holeParamX.Value,
-                        ParamY = (double)holeParamY.Value
+                        Radius = (double) holeRadius.Value,
+                        ParamX = (double) holeParamX.Value,
+                        ParamY = (double) holeParamY.Value
                     };
                 }
 
-                _builder = _builder ?? new TableBuilder();
+                _builder = _builder ?? new Builder();
                 _builder.Build(parameters);
+                /*try
+                {
+                    for (var i = 0; i < 200; i++)
+                    {
+                         _builder.Build(parameters);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    throw new Exception("ты обосрался");
+                }*/
+                
             }
             catch (ArgumentException ex)
             {
@@ -181,7 +195,7 @@ namespace TablePlugin.Forms
             var parameters = new TableParameters();
             var limits = parameters.AdditionalParameters;
 
-            tableTopLength.Value = (decimal)limits
+            tableTopLength.Value = (decimal) limits
                 .Where(x => x.Key == ParametersType.TableTopLength)
                 .Select(expression)
                 .FirstOrDefault();
@@ -190,7 +204,7 @@ namespace TablePlugin.Forms
                 .Where(x => x.Key == ParametersType.TableTopWidth)
                 .Select(expression)
                 .FirstOrDefault();
-            
+
             tableTopHeight.Value = (decimal) limits
                 .Where(x => x.Key == ParametersType.TableTopHeight)
                 .Select(expression)
@@ -200,12 +214,12 @@ namespace TablePlugin.Forms
                 .Where(x => x.Key == ParametersType.HoleRadius)
                 .Select(expression)
                 .FirstOrDefault();
-            
+
             holeParamX.Value = (decimal) limits
                 .Where(x => x.Key == ParametersType.HoleParamX)
                 .Select(expression)
                 .FirstOrDefault();
-            
+
             holeParamY.Value = (decimal) limits
                 .Where(x => x.Key == ParametersType.HoleParamY)
                 .Select(expression)
@@ -215,18 +229,18 @@ namespace TablePlugin.Forms
                 .Where(x => x.Key == ParametersType.TableLegsHeight)
                 .Select(expression)
                 .FirstOrDefault();
-            
+
             tableLegsNumber.Value = (decimal) limits
                 .Where(x => x.Key == ParametersType.TableLegsNumber)
                 .Select(expression)
                 .FirstOrDefault();
-            
+
             SizeValue.Value = LegsTypeComboBox.SelectedIndex == 0
                 ? (decimal) limits
                     .Where(x => x.Key == ParametersType.TableLegsDiameter)
                     .Select(expression)
                     .FirstOrDefault()
-                : (decimal)limits
+                : (decimal) limits
                     .Where(x => x.Key == ParametersType.TableLegsSideLength)
                     .Select(expression)
                     .FirstOrDefault();

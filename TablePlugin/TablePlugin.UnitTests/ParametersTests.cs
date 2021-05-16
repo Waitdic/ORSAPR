@@ -10,7 +10,7 @@ namespace TablePlugin.UnitTests
     /// Тесты для проверки TableParameters.
     /// </summary>
     [TestFixture]
-    public class TableParametersTests
+    public class ParametersTests
     {
         /// <summary>
         /// Тест на присваиваение параметров в объект класса TableParameters. Позитивный тест.

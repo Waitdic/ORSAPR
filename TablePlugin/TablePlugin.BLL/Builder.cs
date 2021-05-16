@@ -1,4 +1,5 @@
-﻿using Kompas6API5;
+﻿using System;
+using Kompas6API5;
 using Kompas6Constants3D;
 using Kompas6Constants;
 using TablePlugin.BLL.Enums;
@@ -9,7 +10,7 @@ namespace TablePlugin.BLL
     /// <summary>
     /// Класс для построение 3D модели.
     /// </summary>
-    public class TableBuilder
+    public class Builder
     {
         /// <summary>
         /// Коннектор для работы с Компас3D.
@@ -28,18 +29,15 @@ namespace TablePlugin.BLL
         public void Build(TableParameters parameters)
         {
             _parameters = parameters;
-            if (_connector == null)
-            {
-                _connector = new KompasConnector();
-            }
-            else
-            {
-                _connector.GetNewPart();
-            }
-
+            _connector = new KompasConnector();
+            _connector.GetNewPart();
+            
             CreateTopTable();
             CreateTableLegs();
-            CreateHole();
+            if (parameters.TableHole.Radius != 0)
+            {
+                CreateHole();
+            }
         }
 
         /// <summary>
@@ -216,16 +214,22 @@ namespace TablePlugin.BLL
         /// <returns>ksSketchDefinition.</returns>
         private ksSketchDefinition CreateSketch(Obj3dType planeType)
         {
-            // Выбор плоскости.
-            var plane = (ksEntity)_connector.Part.GetDefaultEntity((short)planeType);
-            // Создание эскиза.
-            var sketch = (ksEntity)_connector.Part.NewEntity((short)Obj3dType.o3d_sketch);
-            ksSketchDefinition sketchDef = sketch.GetDefinition();
-            // Устаналвливаем эскизу рабочую плоскость.
-            sketchDef.SetPlane(plane);
-            sketch.Create();
-
-            return sketchDef;
+            try
+            {
+                // Выбор плоскости.
+                var plane = (ksEntity) _connector.Part.GetDefaultEntity((short) planeType);
+                // Создание эскиза.
+                var sketch = (ksEntity) _connector.Part.NewEntity((short) Obj3dType.o3d_sketch);
+                ksSketchDefinition sketchDef = (ksSketchDefinition) sketch.GetDefinition();
+                // Устаналвливаем эскизу рабочую плоскость.
+                sketchDef.SetPlane(plane);
+                sketch.Create();
+                return sketchDef;
+            }
+            catch (NullReferenceException)
+            {
+                throw new NullReferenceException("Опять нулл");
+            }
         }
     }
 }

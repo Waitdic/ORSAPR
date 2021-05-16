@@ -68,18 +68,18 @@ namespace TablePlugin.Forms
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.topGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.tableTopHeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.tableTopWidth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.tableTopLength)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTopHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTopWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTopLength)).BeginInit();
             this.ledsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.tableLegsNumber)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.SizeValue)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.tableLegsHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableLegsNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SizeValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableLegsHeight)).BeginInit();
             this.buttonGroupBox.SuspendLayout();
             this.holeGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.holeRadius)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.holeParamY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.holeParamX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holeRadius)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holeParamY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holeParamX)).BeginInit();
             this.SuspendLayout();
             // 
             // BuildButton
@@ -183,32 +183,68 @@ namespace TablePlugin.Forms
             // tableTopHeight
             // 
             this.tableTopHeight.Location = new System.Drawing.Point(333, 38);
-            this.tableTopHeight.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
-            this.tableTopHeight.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
+            this.tableTopHeight.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.tableTopHeight.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.tableTopHeight.Name = "tableTopHeight";
             this.tableTopHeight.Size = new System.Drawing.Size(64, 20);
             this.tableTopHeight.TabIndex = 14;
-            this.tableTopHeight.Value = new decimal(new int[] {35, 0, 0, 0});
+            this.tableTopHeight.Value = new decimal(new int[] {
+            35,
+            0,
+            0,
+            0});
             // 
             // tableTopWidth
             // 
             this.tableTopWidth.Location = new System.Drawing.Point(177, 40);
-            this.tableTopWidth.Maximum = new decimal(new int[] {10000000, 0, 0, 0});
-            this.tableTopWidth.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
+            this.tableTopWidth.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.tableTopWidth.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.tableTopWidth.Name = "tableTopWidth";
             this.tableTopWidth.Size = new System.Drawing.Size(64, 20);
             this.tableTopWidth.TabIndex = 13;
-            this.tableTopWidth.Value = new decimal(new int[] {700, 0, 0, 0});
+            this.tableTopWidth.Value = new decimal(new int[] {
+            700,
+            0,
+            0,
+            0});
             // 
             // tableTopLength
             // 
             this.tableTopLength.Location = new System.Drawing.Point(13, 40);
-            this.tableTopLength.Maximum = new decimal(new int[] {100000, 0, 0, 0});
-            this.tableTopLength.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
+            this.tableTopLength.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.tableTopLength.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.tableTopLength.Name = "tableTopLength";
             this.tableTopLength.Size = new System.Drawing.Size(63, 20);
             this.tableTopLength.TabIndex = 12;
-            this.tableTopLength.Value = new decimal(new int[] {1500, 0, 0, 0});
+            this.tableTopLength.Value = new decimal(new int[] {
+            1500,
+            0,
+            0,
+            0});
             // 
             // ledsGroupBox
             // 
@@ -233,7 +269,9 @@ namespace TablePlugin.Forms
             // LegsTypeComboBox
             // 
             this.LegsTypeComboBox.FormattingEnabled = true;
-            this.LegsTypeComboBox.Items.AddRange(new object[] {"Круглые", "Квадратные"});
+            this.LegsTypeComboBox.Items.AddRange(new object[] {
+            "Круглые",
+            "Квадратные"});
             this.LegsTypeComboBox.Location = new System.Drawing.Point(12, 103);
             this.LegsTypeComboBox.Name = "LegsTypeComboBox";
             this.LegsTypeComboBox.Size = new System.Drawing.Size(87, 21);
@@ -263,12 +301,24 @@ namespace TablePlugin.Forms
             // tableLegsNumber
             // 
             this.tableLegsNumber.Location = new System.Drawing.Point(179, 39);
-            this.tableLegsNumber.Maximum = new decimal(new int[] {100000, 0, 0, 0});
-            this.tableLegsNumber.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
+            this.tableLegsNumber.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.tableLegsNumber.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.tableLegsNumber.Name = "tableLegsNumber";
             this.tableLegsNumber.Size = new System.Drawing.Size(80, 20);
             this.tableLegsNumber.TabIndex = 20;
-            this.tableLegsNumber.Value = new decimal(new int[] {4, 0, 0, 0});
+            this.tableLegsNumber.Value = new decimal(new int[] {
+            4,
+            0,
+            0,
+            0});
             // 
             // label14
             // 
@@ -283,22 +333,46 @@ namespace TablePlugin.Forms
             // SizeValue
             // 
             this.SizeValue.Location = new System.Drawing.Point(179, 102);
-            this.SizeValue.Maximum = new decimal(new int[] {100000, 0, 0, 0});
-            this.SizeValue.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
+            this.SizeValue.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.SizeValue.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.SizeValue.Name = "SizeValue";
             this.SizeValue.Size = new System.Drawing.Size(80, 20);
             this.SizeValue.TabIndex = 16;
-            this.SizeValue.Value = new decimal(new int[] {50, 0, 0, 0});
+            this.SizeValue.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
             // 
             // tableLegsHeight
             // 
             this.tableLegsHeight.Location = new System.Drawing.Point(12, 37);
-            this.tableLegsHeight.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
-            this.tableLegsHeight.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
+            this.tableLegsHeight.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.tableLegsHeight.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.tableLegsHeight.Name = "tableLegsHeight";
             this.tableLegsHeight.Size = new System.Drawing.Size(87, 20);
             this.tableLegsHeight.TabIndex = 14;
-            this.tableLegsHeight.Value = new decimal(new int[] {650, 0, 0, 0});
+            this.tableLegsHeight.Value = new decimal(new int[] {
+            650,
+            0,
+            0,
+            0});
             // 
             // NameOfSize
             // 
@@ -431,32 +505,68 @@ namespace TablePlugin.Forms
             // holeRadius
             // 
             this.holeRadius.Location = new System.Drawing.Point(333, 38);
-            this.holeRadius.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
-            this.holeRadius.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
+            this.holeRadius.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.holeRadius.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.holeRadius.Name = "holeRadius";
             this.holeRadius.Size = new System.Drawing.Size(64, 20);
             this.holeRadius.TabIndex = 14;
-            this.holeRadius.Value = new decimal(new int[] {25, 0, 0, 0});
+            this.holeRadius.Value = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
             // 
             // holeParamY
             // 
             this.holeParamY.Location = new System.Drawing.Point(177, 40);
-            this.holeParamY.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
-            this.holeParamY.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
+            this.holeParamY.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.holeParamY.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.holeParamY.Name = "holeParamY";
             this.holeParamY.Size = new System.Drawing.Size(64, 20);
             this.holeParamY.TabIndex = 13;
-            this.holeParamY.Value = new decimal(new int[] {400, 0, 0, 0});
+            this.holeParamY.Value = new decimal(new int[] {
+            400,
+            0,
+            0,
+            0});
             // 
             // holeParamX
             // 
             this.holeParamX.Location = new System.Drawing.Point(13, 40);
-            this.holeParamX.Maximum = new decimal(new int[] {1000000, 0, 0, 0});
-            this.holeParamX.Minimum = new decimal(new int[] {1000000, 0, 0, -2147483648});
+            this.holeParamX.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.holeParamX.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
             this.holeParamX.Name = "holeParamX";
             this.holeParamX.Size = new System.Drawing.Size(63, 20);
             this.holeParamX.TabIndex = 12;
-            this.holeParamX.Value = new decimal(new int[] {900, 0, 0, 0});
+            this.holeParamX.Value = new decimal(new int[] {
+            900,
+            0,
+            0,
+            0});
             // 
             // label10
             // 
@@ -502,22 +612,23 @@ namespace TablePlugin.Forms
             this.Text = "TablePlugin";
             this.topGroupBox.ResumeLayout(false);
             this.topGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.tableTopHeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.tableTopWidth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.tableTopLength)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTopHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTopWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableTopLength)).EndInit();
             this.ledsGroupBox.ResumeLayout(false);
             this.ledsGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.tableLegsNumber)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.SizeValue)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.tableLegsHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableLegsNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SizeValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableLegsHeight)).EndInit();
             this.buttonGroupBox.ResumeLayout(false);
             this.holeGroupBox.ResumeLayout(false);
             this.holeGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize) (this.holeRadius)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.holeParamY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.holeParamX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holeRadius)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holeParamY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.holeParamX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

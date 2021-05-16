@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using Kompas6API5;
 using Kompas6Constants3D;
 
@@ -14,11 +15,25 @@ namespace TablePlugin.BLL
         /// </summary>
         public KompasConnector()
         {
-			KsObject = (KompasObject)Activator.CreateInstance(Type.GetTypeFromProgID("KOMPAS.Application.5"));
-			KsObject.Visible = true;
-			KsObject.ActivateControllerAPI();
+            var progId = "KOMPAS.Application.5";
 
-            GetNewPart();
+            try
+            {
+                KsObject = (KompasObject)Marshal.GetActiveObject(progId);
+            }
+            catch (COMException)
+            {
+                /*if (KsObject != null)
+                {
+                    Marshal.ReleaseComObject(KsObject);
+                    KsObject = null;
+                }*/
+
+                KsObject = (KompasObject) Activator.CreateInstance(Type.GetTypeFromProgID(progId));
+            }
+
+            KsObject.Visible = true;
+            KsObject.ActivateControllerAPI();
         }
 
         /// <summary>
@@ -36,9 +51,10 @@ namespace TablePlugin.BLL
         /// </summary>
         public void GetNewPart()
         {
-            var ksDoc = KsObject.Document3D();
+            var ksDoc = (ksDocument3D)KsObject.Document3D();
             ksDoc.Create(false, true);
-            Part = ksDoc.GetPart((short)Part_Type.pTop_Part);
+            // ksDoc = (ksDocument3D)KsObject.ActiveDocument3D();
+            Part = (ksPart)ksDoc.GetPart((short)Part_Type.pTop_Part);
         }
     }
 }
