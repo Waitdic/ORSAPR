@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TablePlugin.BLL;
 using TablePlugin.BLL.Enums;
@@ -62,19 +61,6 @@ namespace TablePlugin.Forms
 
                 _builder = _builder ?? new Builder();
                 _builder.Build(parameters);
-                /*try
-                {
-                    for (var i = 0; i < 200; i++)
-                    {
-                         _builder.Build(parameters);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    throw new Exception("ты обосрался");
-                }*/
-                
             }
             catch (ArgumentException ex)
             {

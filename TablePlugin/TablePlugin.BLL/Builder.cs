@@ -1,5 +1,4 @@
-﻿using System;
-using Kompas6API5;
+﻿using Kompas6API5;
 using Kompas6Constants3D;
 using Kompas6Constants;
 using TablePlugin.BLL.Enums;
@@ -31,7 +30,7 @@ namespace TablePlugin.BLL
             _parameters = parameters;
             _connector = new KompasConnector();
             _connector.GetNewPart();
-            
+
             CreateTopTable();
             CreateTableLegs();
             if (parameters.TableHole.Radius != 0)
@@ -214,22 +213,15 @@ namespace TablePlugin.BLL
         /// <returns>ksSketchDefinition.</returns>
         private ksSketchDefinition CreateSketch(Obj3dType planeType)
         {
-            try
-            {
-                // Выбор плоскости.
-                var plane = (ksEntity) _connector.Part.GetDefaultEntity((short) planeType);
-                // Создание эскиза.
-                var sketch = (ksEntity) _connector.Part.NewEntity((short) Obj3dType.o3d_sketch);
-                ksSketchDefinition sketchDef = (ksSketchDefinition) sketch.GetDefinition();
-                // Устаналвливаем эскизу рабочую плоскость.
-                sketchDef.SetPlane(plane);
-                sketch.Create();
-                return sketchDef;
-            }
-            catch (NullReferenceException)
-            {
-                throw new NullReferenceException("Опять нулл");
-            }
+            // Выбор плоскости.
+            var plane = (ksEntity)_connector.Part.GetDefaultEntity((short)planeType);
+            // Создание эскиза.
+            var sketch = (ksEntity)_connector.Part.NewEntity((short)Obj3dType.o3d_sketch);
+            var sketchDef = (ksSketchDefinition)sketch.GetDefinition();
+            // Устаналвливаем эскизу рабочую плоскость.
+            sketchDef.SetPlane(plane);
+            sketch.Create();
+            return sketchDef;
         }
     }
 }
