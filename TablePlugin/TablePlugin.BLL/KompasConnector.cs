@@ -37,7 +37,6 @@ namespace TablePlugin.BLL
                Thread.Sleep(50);
             }
 
-            Thread.Sleep(50);
             KsObject.Visible = true;
             KsObject.ActivateControllerAPI();
         }
