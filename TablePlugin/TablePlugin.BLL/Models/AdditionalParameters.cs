@@ -20,6 +20,7 @@
         /// </summary>
         private string _name;
 
+        //TODO:
         /// <summary>
         /// Минимальное значение.
         /// </summary>

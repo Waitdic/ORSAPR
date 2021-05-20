@@ -50,6 +50,7 @@ namespace TablePlugin.BLL.Models
             } 
         }
 
+        //TODO: Duplication
         /// <summary>
         /// Проверка присваиваемого значения на double.
         /// </summary>

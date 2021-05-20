@@ -48,6 +48,7 @@ namespace TablePlugin.BLL
             var sketchDef = CreateSketch(Obj3dType.o3d_planeXOY);
             var doc2D = (ksDocument2D)sketchDef.BeginEdit();
 
+             //TODO: RSDN
             // Создание прямоугольника.
             var rectangleParam = (ksRectangleParam)_connector.KsObject.GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
             // Присваиваем параметры прямоугольнику.
@@ -76,8 +77,12 @@ namespace TablePlugin.BLL
             var doc2D = (ksDocument2D)sketchDef.BeginEdit();
 
             // Координаты цетров ножек.
-            var x = _parameters.TabLegs.Number != 5 ? new double[4] : new double[5];
-            var y = _parameters.TabLegs.Number != 5 ? new double[4] : new double[5];
+            var x = _parameters.TabLegs.Number != 5 
+                ? new double[4] 
+                : new double[5];
+            var y = _parameters.TabLegs.Number != 5 
+                ? new double[4] 
+                : new double[5];
 
             // Создание примитива основания ножек по параметрам.
             if (_parameters.TabLegs.Type == LegsType.RoundLegs)
@@ -129,6 +134,7 @@ namespace TablePlugin.BLL
                 // Создание квадратов основания ножек.
                 for (var i = 0; i < x.Length; i++)
                 {
+                     //TODO: RSDN
                     var rectangleParam = (ksRectangleParam)_connector.KsObject.GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
                     rectangleParam.x = x[i];
                     rectangleParam.y = y[i];
@@ -163,6 +169,7 @@ namespace TablePlugin.BLL
             // Конец редактирования эскиза.
             sketchDef.EndEdit();
 
+             //TODO: RSDN
             // Вырезать выдавливанием.
             PressOutSketch(sketchDef, _parameters.TableTop.Height, ksObj3dTypeEnum.o3d_cutExtrusion, false);
         }
@@ -174,6 +181,7 @@ namespace TablePlugin.BLL
         /// <param name="height">Высота выдавливание.</param>
         /// <param name="type">Тип выдавливания.</param>
         /// <param name="side">Направление выдаливания.</param>
+        ///  //TODO: RSDN
         private void PressOutSketch(ksSketchDefinition sketchDef, double height, ksObj3dTypeEnum type = ksObj3dTypeEnum.o3d_bossExtrusion, bool side = true)
         {
             // Выдавливание по типу
@@ -185,6 +193,7 @@ namespace TablePlugin.BLL
                 var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
                 // Параметры выдавливания.
                 extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
+                 //TODO: RSDN
                 extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
 
                 // эскиз операции выдавливания.
@@ -195,6 +204,7 @@ namespace TablePlugin.BLL
                 var extrusionDef = (ksCutExtrusionDefinition)extrusionEntity.GetDefinition();
                 // параметры выдаливания.
                 extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
+                 //TODO: RSDN
                 // Тип направления.
                 extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
 

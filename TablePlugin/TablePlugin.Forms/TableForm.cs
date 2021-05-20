@@ -9,6 +9,7 @@ using TablePlugin.BLL.Models;
 
 namespace TablePlugin.Forms
 {
+    //TODO: XML комментарии?
     public partial class TableForm : Form
     {
         /// <summary>
@@ -45,7 +46,9 @@ namespace TablePlugin.Forms
                 {
                     Height = (double) tableLegsHeight.Value,
                     Number = (int) tableLegsNumber.Value,
-                    Type = LegsTypeComboBox.SelectedIndex == 0 ? LegsType.RoundLegs : LegsType.SquareLegs,
+                    Type = LegsTypeComboBox.SelectedIndex == 0 
+                        ? LegsType.RoundLegs 
+                        : LegsType.SquareLegs,
                     Value = (double) SizeValue.Value
                 };
 
@@ -176,11 +179,13 @@ namespace TablePlugin.Forms
         /// Метод для установки значений минимума и максимума для полей формы.
         /// </summary>
         /// <param name="expression">Лямбда-выражение.</param>
+        ///  //TODO: RSDN
         private void SetMinMaxParameters(Func<KeyValuePair<ParametersType, AdditionalParameters>, double> expression)
         {
             var parameters = new TableParameters();
             var limits = parameters.AdditionalParameters;
 
+            //TODO: Duplication
             tableTopLength.Value = (decimal) limits
                 .Where(x => x.Key == ParametersType.TableTopLength)
                 .Select(expression)

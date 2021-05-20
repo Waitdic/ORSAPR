@@ -30,13 +30,19 @@ namespace TablePlugin.BLL.Models
         /// </summary>
         private readonly Dictionary<ParametersType, AdditionalParameters> _additionalParameters;
 
+        //TODO: XML комментарии?
         public TableParameters()
         {
             _additionalParameters = new Dictionary<ParametersType, AdditionalParameters>
             {
                 {
                     ParametersType.TableTopLength, 
-                    new AdditionalParameters { Min = 1000, Max = 2000, Name = "Длина столешницы" }
+                    new AdditionalParameters
+                    {
+                        Min = 1000, 
+                        Max = 2000, 
+                        Name = "Длина столешницы"
+                    }
                 },
                 {
                     ParametersType.TableTopWidth, 
