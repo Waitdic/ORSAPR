@@ -63,11 +63,6 @@ namespace TablePlugin.BLL.Models
         /// <param name="name">Имя параметра.</param>
         private static void ValidateValue(double value, string name)
         {
-            //if (double.IsNaN(value) || double.IsInfinity(value))
-            //{
-            //    throw new ArgumentException("Значение не является числом типа double");
-            //}
-
             if (Math.Abs(value - Math.Truncate(value)) > 0.001d)
             {
                 throw new ArgumentException($"Значение поля '{name}' не может быть дробным");
