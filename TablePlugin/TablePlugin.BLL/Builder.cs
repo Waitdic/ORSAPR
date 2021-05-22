@@ -44,14 +44,13 @@ namespace TablePlugin.BLL
         /// </summary>
         private void CreateTopTable()
         {
-            // Создаем эскиз.
             var sketchDef = CreateSketch(Obj3dType.o3d_planeXOY);
             var doc2D = (ksDocument2D)sketchDef.BeginEdit();
 
              //TODO: RSDN
-            // Создание прямоугольника.
-            var rectangleParam = (ksRectangleParam)_connector.KsObject.GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
-            // Присваиваем параметры прямоугольнику.
+             var rectangleParam = (ksRectangleParam)_connector
+                .KsObject
+                .GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
             rectangleParam.x = 0;
             rectangleParam.y = 0;
             rectangleParam.ang = 0;
@@ -59,11 +58,8 @@ namespace TablePlugin.BLL
             rectangleParam.width = _parameters.TableTop.Length;
             rectangleParam.style = 1;
             doc2D.ksRectangle(rectangleParam);
-
-            // Конец редактирования эскиза.
-            sketchDef.EndEdit();
             
-            // Выдавить.
+            sketchDef.EndEdit();
             PressOutSketch(sketchDef, _parameters.TableTop.Height);
         }
 
@@ -72,19 +68,16 @@ namespace TablePlugin.BLL
         /// </summary>
         private void CreateTableLegs()
         {
-            // Создаем эскиз.
             var sketchDef = CreateSketch(Obj3dType.o3d_planeXOY);
             var doc2D = (ksDocument2D)sketchDef.BeginEdit();
-
-            // Координаты цетров ножек.
+            
             var x = _parameters.TabLegs.Number != 5 
                 ? new double[4] 
                 : new double[5];
             var y = _parameters.TabLegs.Number != 5 
                 ? new double[4] 
                 : new double[5];
-
-            // Создание примитива основания ножек по параметрам.
+            
             if (_parameters.TabLegs.Type == LegsType.RoundLegs)
             {
                 x[0] = 20 + (_parameters.TabLegs.Value / 2);
@@ -108,7 +101,10 @@ namespace TablePlugin.BLL
                 // Создание окружностей основания ножек.
                 for (var i = 0; i < x.Length; i++)
                 {
-                    doc2D.ksCircle(x[i], y[i], _parameters.TabLegs.Value / 2, 1);
+                    doc2D.ksCircle(
+                        x[i], 
+                        y[i], 
+                        _parameters.TabLegs.Value / 2, 1);
                 }
             }
             else
@@ -135,7 +131,10 @@ namespace TablePlugin.BLL
                 for (var i = 0; i < x.Length; i++)
                 {
                      //TODO: RSDN
-                    var rectangleParam = (ksRectangleParam)_connector.KsObject.GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
+                    var rectangleParam = (ksRectangleParam)_connector
+                        .KsObject
+                        .GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
+                    
                     rectangleParam.x = x[i];
                     rectangleParam.y = y[i];
                     rectangleParam.ang = 0;
@@ -145,12 +144,13 @@ namespace TablePlugin.BLL
                     doc2D.ksRectangle(rectangleParam);
                 }
             }
-
-            // Конец редактирования эскиза.
+            
             sketchDef.EndEdit();
-
-            // Выдавить.
-            PressOutSketch(sketchDef, _parameters.TabLegs.Height, side: false);
+            
+            PressOutSketch(
+                sketchDef, 
+                _parameters.TabLegs.Height, 
+                side: false);
         }
 
         /// <summary>
@@ -158,20 +158,25 @@ namespace TablePlugin.BLL
         /// </summary>
         private void CreateHole()
         {
-            // Создаем эскиз.
             var sketchDef = CreateSketch(Obj3dType.o3d_planeXOY);
             var doc2D = (ksDocument2D)sketchDef.BeginEdit();
 
             // Создаем окружность.
             var param = _parameters.TableHole;
-            doc2D.ksCircle(param.ParamX, param.ParamY, param.Radius, 1);
-
-            // Конец редактирования эскиза.
+            doc2D.ksCircle(
+                param.ParamX, 
+                param.ParamY, 
+                param.Radius, 
+                1);
+            
             sketchDef.EndEdit();
 
              //TODO: RSDN
-            // Вырезать выдавливанием.
-            PressOutSketch(sketchDef, _parameters.TableTop.Height, ksObj3dTypeEnum.o3d_cutExtrusion, false);
+             PressOutSketch(
+                sketchDef, 
+                _parameters.TableTop.Height, 
+                ksObj3dTypeEnum.o3d_cutExtrusion, 
+                false);
         }
 
         /// <summary>
@@ -182,37 +187,37 @@ namespace TablePlugin.BLL
         /// <param name="type">Тип выдавливания.</param>
         /// <param name="side">Направление выдаливания.</param>
         ///  //TODO: RSDN
-        private void PressOutSketch(ksSketchDefinition sketchDef, double height, ksObj3dTypeEnum type = ksObj3dTypeEnum.o3d_bossExtrusion, bool side = true)
+        private void PressOutSketch(
+            ksSketchDefinition sketchDef, 
+            double height, 
+            ksObj3dTypeEnum type = ksObj3dTypeEnum.o3d_bossExtrusion, 
+            bool side = true)
         {
-            // Выдавливание по типу
             var extrusionEntity = (ksEntity)_connector.Part.NewEntity((short)type);
-
-            // интерфейс свойств базовой операции выдавливания.
+            
             if (type == ksObj3dTypeEnum.o3d_bossExtrusion)
             {
                 var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
-                // Параметры выдавливания.
                 extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
                  //TODO: RSDN
-                extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
-
-                // эскиз операции выдавливания.
+                extrusionDef.directionType = side 
+                    ? (short)Direction_Type.dtNormal 
+                    : (short)Direction_Type.dtReverse;
+                
                 extrusionDef.SetSketch(sketchDef);
             }
             else if (type == ksObj3dTypeEnum.o3d_cutExtrusion)
             { 
                 var extrusionDef = (ksCutExtrusionDefinition)extrusionEntity.GetDefinition();
-                // параметры выдаливания.
                 extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
                  //TODO: RSDN
-                // Тип направления.
-                extrusionDef.directionType = side ? (short)Direction_Type.dtNormal : (short)Direction_Type.dtReverse;
-
-                // эскиз операции вырезания по выдавливанию.
+                 extrusionDef.directionType = side 
+                    ? (short)Direction_Type.dtNormal 
+                    : (short)Direction_Type.dtReverse;
+                
                 extrusionDef.SetSketch(sketchDef);
             }
-
-            // создать операцию.
+            
             extrusionEntity.Create();
         }
 
@@ -223,12 +228,15 @@ namespace TablePlugin.BLL
         /// <returns>ksSketchDefinition.</returns>
         private ksSketchDefinition CreateSketch(Obj3dType planeType)
         {
-            // Выбор плоскости.
-            var plane = (ksEntity)_connector.Part.GetDefaultEntity((short)planeType);
-            // Создание эскиза.
-            var sketch = (ksEntity)_connector.Part.NewEntity((short)Obj3dType.o3d_sketch);
+            var plane = (ksEntity)_connector
+                .Part
+                .GetDefaultEntity((short)planeType);
+            
+            var sketch = (ksEntity)_connector
+                .Part
+                .NewEntity((short)Obj3dType.o3d_sketch);
+            
             var sketchDef = (ksSketchDefinition)sketch.GetDefinition();
-            // Устаналвливаем эскизу рабочую плоскость.
             sketchDef.SetPlane(plane);
             sketch.Create();
             return sketchDef;

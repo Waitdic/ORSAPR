@@ -46,39 +46,84 @@ namespace TablePlugin.BLL.Models
                 },
                 {
                     ParametersType.TableTopWidth, 
-                    new AdditionalParameters { Min = 600, Max = 800, Name = "Ширина столешницы" }
+                    new AdditionalParameters
+                    {
+                        Min = 600, 
+                        Max = 800, 
+                        Name = "Ширина столешницы"
+                    }
                 },
                 {
                     ParametersType.TableTopHeight, 
-                    new AdditionalParameters { Min = 30, Max = 40, Name = "Высота столешницы" }
+                    new AdditionalParameters
+                    {
+                        Min = 30, 
+                        Max = 40, 
+                        Name = "Высота столешницы"
+                    }
                 },
                 {
                     ParametersType.HoleParamX, 
-                    new AdditionalParameters { Min = 120, Max = 1870, Name = "Расстояние по длине" }
+                    new AdditionalParameters
+                    {
+                        Min = 120, 
+                        Max = 1870, 
+                        Name = "Расстояние по длине"
+                    }
                 },
                 {
                     ParametersType.HoleParamY, 
-                    new AdditionalParameters { Min = 90, Max = 700, Name = "Расстояние по ширине" }
+                    new AdditionalParameters
+                    {
+                        Min = 90, 
+                        Max = 700, 
+                        Name = "Расстояние по ширине"
+                    }
                 },
                 {
                     ParametersType.HoleRadius, 
-                    new AdditionalParameters { Min = 20, Max = 30, Name = "Радиус отверстия" }
+                    new AdditionalParameters
+                    {
+                        Min = 20, 
+                        Max = 30, 
+                        Name = "Радиус отверстия"
+                    }
                 },
                 {
                     ParametersType.TableLegsHeight, 
-                    new AdditionalParameters { Min = 600, Max = 700, Name = "Высота ножек" }
+                    new AdditionalParameters
+                    {
+                        Min = 600, 
+                        Max = 700, 
+                        Name = "Высота ножек"
+                    }
                 },
                 {
                     ParametersType.TableLegsNumber, 
-                    new AdditionalParameters { Min = 4, Max = 5, Name = "Количество ножек" }
+                    new AdditionalParameters
+                    {
+                        Min = 4, 
+                        Max = 5, 
+                        Name = "Количество ножек"
+                    }
                 },
                 {
                     ParametersType.TableLegsDiameter, 
-                    new AdditionalParameters { Min = 40, Max = 60, Name = "Диаметр основания ножек" }
+                    new AdditionalParameters
+                    {
+                        Min = 40, 
+                        Max = 60, 
+                        Name = "Диаметр основания ножек"
+                    }
                 },
                 {
                     ParametersType.TableLegsSideLength,
-                    new AdditionalParameters { Min = 40, Max = 60, Name = "Длина основания ножек" }
+                    new AdditionalParameters
+                    {
+                        Min = 40, 
+                        Max = 60, 
+                        Name = "Длина основания ножек"
+                    }
                 },
             };
         }
@@ -138,8 +183,17 @@ namespace TablePlugin.BLL.Models
                     var leftY = (_tableTop.Width / 2) - (_tableLegs.Value / 2) - value.Radius - 20;
                     var rightY = (_tableTop.Width / 2) + (_tableLegs.Value / 2) + value.Radius + 20;
 
-                    CheckCrossingOfRange(leftX, rightX, value.ParamX, "Расстояние по длине");
-                    CheckCrossingOfRange(leftY, rightY, value.ParamY, "Расстояние по ширине");
+                    CheckCrossingOfRange(
+                        leftX, 
+                        rightX, 
+                        value.ParamX, 
+                        "Расстояние по длине");
+                    
+                    CheckCrossingOfRange(
+                        leftY, 
+                        rightY, 
+                        value.ParamY, 
+                        "Расстояние по ширине");
                 }
 
                 _tableHole = value;
