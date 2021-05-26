@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using KompasAPI7;
 using TablePlugin.BLL.Enums;
 
 namespace TablePlugin.BLL.Models
@@ -31,6 +32,7 @@ namespace TablePlugin.BLL.Models
         private readonly Dictionary<ParametersType, AdditionalParameters> _additionalParameters;
 
         //TODO: XML комментарии?
+        // Конструктор, который устанавливаниет начальные ограничения для параметров.
         public TableParameters()
         {
             _additionalParameters = new Dictionary<ParametersType, AdditionalParameters>
@@ -38,92 +40,92 @@ namespace TablePlugin.BLL.Models
                 {
                     ParametersType.TableTopLength, 
                     new AdditionalParameters
-                    {
-                        Min = 1000, 
-                        Max = 2000, 
-                        Name = "Длина столешницы"
-                    }
+                    (
+                        min: 1000, 
+                        max: 2000, 
+                        name: "Длина столешницы"
+                    )
                 },
                 {
                     ParametersType.TableTopWidth, 
                     new AdditionalParameters
-                    {
-                        Min = 600, 
-                        Max = 800, 
-                        Name = "Ширина столешницы"
-                    }
+                    (
+                        min: 600, 
+                        max: 800, 
+                        name: "Ширина столешницы"
+                    )
                 },
                 {
                     ParametersType.TableTopHeight, 
                     new AdditionalParameters
-                    {
-                        Min = 30, 
-                        Max = 40, 
-                        Name = "Высота столешницы"
-                    }
+                    (
+                        min: 30, 
+                        max: 40, 
+                        name: "Высота столешницы"
+                    )
                 },
                 {
                     ParametersType.HoleParamX, 
                     new AdditionalParameters
-                    {
-                        Min = 120, 
-                        Max = 1870, 
-                        Name = "Расстояние по длине"
-                    }
+                    (
+                        min: 120, 
+                        max: 1870, 
+                        name: "Расстояние по длине"
+                    )
                 },
                 {
                     ParametersType.HoleParamY, 
                     new AdditionalParameters
-                    {
-                        Min = 90, 
-                        Max = 700, 
-                        Name = "Расстояние по ширине"
-                    }
+                    (
+                        min: 90, 
+                        max: 700, 
+                        name: "Расстояние по ширине"
+                    )
                 },
                 {
                     ParametersType.HoleRadius, 
                     new AdditionalParameters
-                    {
-                        Min = 20, 
-                        Max = 30, 
-                        Name = "Радиус отверстия"
-                    }
+                    (
+                        min: 20, 
+                        max: 30, 
+                        name: "Радиус отверстия"
+                    )
                 },
                 {
                     ParametersType.TableLegsHeight, 
                     new AdditionalParameters
-                    {
-                        Min = 600, 
-                        Max = 700, 
-                        Name = "Высота ножек"
-                    }
+                    (
+                        min: 600, 
+                        max: 700, 
+                        name: "Высота ножек"
+                    )
                 },
                 {
                     ParametersType.TableLegsNumber, 
                     new AdditionalParameters
-                    {
-                        Min = 4, 
-                        Max = 5, 
-                        Name = "Количество ножек"
-                    }
+                    (
+                        min: 4, 
+                        max: 5, 
+                        name: "Количество ножек"
+                    )
                 },
                 {
                     ParametersType.TableLegsDiameter, 
                     new AdditionalParameters
-                    {
-                        Min = 40, 
-                        Max = 60, 
-                        Name = "Диаметр основания ножек"
-                    }
+                    (
+                        min: 40, 
+                        max: 60, 
+                        name: "Диаметр основания ножек"
+                    )
                 },
                 {
                     ParametersType.TableLegsSideLength,
                     new AdditionalParameters
-                    {
-                        Min = 40, 
-                        Max = 60, 
-                        Name = "Длина основания ножек"
-                    }
+                    (
+                        min: 40, 
+                        max: 60, 
+                        name: "Длина основания ножек"
+                    )
                 },
             };
         }
@@ -163,11 +165,13 @@ namespace TablePlugin.BLL.Models
                     .FirstOrDefault(x => x.Key == ParametersType.HoleParamY)
                     .Value;
 
-                additionalParamX.Max = _tableTop.Length - value.Radius - 100;
-                additionalParamX.Min = value.Radius + 100;
+                additionalParamX.ChangeRange(
+                    max: _tableTop.Length - value.Radius - 100,
+                    min: value.Radius + 100);
 
-                additionalParamY.Max = _tableTop.Width - value.Radius - 70;
-                additionalParamY.Min = value.Radius + 70;
+                additionalParamY.ChangeRange(
+                    max: _tableTop.Width - value.Radius - 70,
+                    min: value.Radius + 70);
 
                 CheckRangeOfValues(new Dictionary<ParametersType, double>
                 {
@@ -213,7 +217,8 @@ namespace TablePlugin.BLL.Models
                     var number = _additionalParameters
                         .FirstOrDefault(x => x.Key == ParametersType.TableLegsNumber)
                         .Value;
-                    number.Min = 5;
+                    
+                    number.ChangeRange(max: number.Max, min: 5);
                 }
                
                 var container = new Dictionary<ParametersType, double>
@@ -236,7 +241,26 @@ namespace TablePlugin.BLL.Models
         /// <summary>
         /// Дополнительные параметры стола.
         /// </summary>
-        public Dictionary<ParametersType, AdditionalParameters> AdditionalParameters { get => _additionalParameters; }
+        public Dictionary<ParametersType, AdditionalParameters> AdditionalParameters
+        {
+            get => _additionalParameters;
+        }
+
+        /// <summary>
+        /// Метод для уставновки min/max значений параметра.
+        /// </summary>
+        /// <param name="expression">Лямбда-выражение.</param>
+        /// <param name="type">Логическое имя параметра.</param>
+        /// <returns>Значение min/max параметра в decimal</returns>
+        public decimal SetMinMaxParameters(
+            Func<KeyValuePair<ParametersType, AdditionalParameters>, double> expression
+            ,ParametersType type)
+        {
+            return (decimal) _additionalParameters
+                .Where(x => x.Key == type)
+                .Select(expression)
+                .FirstOrDefault();
+        }
 
         /// <summary>
         /// Проверка на допустимый диапозон.

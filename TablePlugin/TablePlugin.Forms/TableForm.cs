@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using TablePlugin.BLL;
 using TablePlugin.BLL.Enums;
@@ -10,6 +9,7 @@ using TablePlugin.BLL.Models;
 namespace TablePlugin.Forms
 {
     //TODO: XML комментарии?
+    // Класс для работы с формой (главным окном) плагина.
     public partial class TableForm : Form
     {
         /// <summary>
@@ -180,61 +180,53 @@ namespace TablePlugin.Forms
         /// </summary>
         /// <param name="expression">Лямбда-выражение.</param>
         ///  //TODO: RSDN
-        private void SetMinMaxParameters(Func<KeyValuePair<ParametersType, AdditionalParameters>, double> expression)
+        private void SetMinMaxParameters(Func<KeyValuePair<
+            ParametersType,
+            AdditionalParameters>,
+            double> expression)
         {
             var parameters = new TableParameters();
-            var limits = parameters.AdditionalParameters;
 
             //TODO: Duplication
-            tableTopLength.Value = (decimal) limits
-                .Where(x => x.Key == ParametersType.TableTopLength)
-                .Select(expression)
-                .FirstOrDefault();
-
-            tableTopWidth.Value = (decimal) limits
-                .Where(x => x.Key == ParametersType.TableTopWidth)
-                .Select(expression)
-                .FirstOrDefault();
-
-            tableTopHeight.Value = (decimal) limits
-                .Where(x => x.Key == ParametersType.TableTopHeight)
-                .Select(expression)
-                .FirstOrDefault();
-
-            holeRadius.Value = (decimal) limits
-                .Where(x => x.Key == ParametersType.HoleRadius)
-                .Select(expression)
-                .FirstOrDefault();
-
-            holeParamX.Value = (decimal) limits
-                .Where(x => x.Key == ParametersType.HoleParamX)
-                .Select(expression)
-                .FirstOrDefault();
-
-            holeParamY.Value = (decimal) limits
-                .Where(x => x.Key == ParametersType.HoleParamY)
-                .Select(expression)
-                .FirstOrDefault();
-
-            tableLegsHeight.Value = (decimal) limits
-                .Where(x => x.Key == ParametersType.TableLegsHeight)
-                .Select(expression)
-                .FirstOrDefault();
-
-            tableLegsNumber.Value = (decimal) limits
-                .Where(x => x.Key == ParametersType.TableLegsNumber)
-                .Select(expression)
-                .FirstOrDefault();
-
+            tableTopLength.Value = parameters.SetMinMaxParameters(
+                expression, 
+                ParametersType.TableTopLength);
+            
+            tableTopWidth.Value = parameters.SetMinMaxParameters(
+                expression, 
+                ParametersType.TableTopWidth);
+            
+            tableTopHeight.Value = parameters.SetMinMaxParameters(
+                expression, 
+                ParametersType.TableTopHeight);
+            
+            holeRadius.Value = parameters.SetMinMaxParameters(
+                expression, 
+                ParametersType.HoleRadius);
+            
+            holeParamX.Value = parameters.SetMinMaxParameters(
+                expression, 
+                ParametersType.HoleParamX);
+            
+            holeParamY.Value = parameters.SetMinMaxParameters(
+                expression, 
+                ParametersType.HoleParamY);
+            
+            tableLegsHeight.Value = parameters.SetMinMaxParameters(
+                expression, 
+                ParametersType.TableLegsHeight);
+            
+            tableLegsNumber.Value = parameters.SetMinMaxParameters(
+                expression,
+                ParametersType.TableLegsNumber);
+            
             SizeValue.Value = LegsTypeComboBox.SelectedIndex == 0
-                ? (decimal) limits
-                    .Where(x => x.Key == ParametersType.TableLegsDiameter)
-                    .Select(expression)
-                    .FirstOrDefault()
-                : (decimal) limits
-                    .Where(x => x.Key == ParametersType.TableLegsSideLength)
-                    .Select(expression)
-                    .FirstOrDefault();
+                ? parameters.SetMinMaxParameters(
+                    expression,
+                    ParametersType.TableLegsDiameter)
+                : parameters.SetMinMaxParameters(
+                    expression, 
+                    ParametersType.TableLegsSideLength);
         }
     }
 }

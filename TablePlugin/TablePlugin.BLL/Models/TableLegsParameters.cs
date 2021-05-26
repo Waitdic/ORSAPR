@@ -1,4 +1,5 @@
 ﻿using System;
+using TablePlugin.BLL.Common;
 using TablePlugin.BLL.Enums;
 
 namespace TablePlugin.BLL.Models
@@ -20,7 +21,7 @@ namespace TablePlugin.BLL.Models
             get => _height;
             set
             {
-                ValidateValue(value, "Высота ножек");
+                ParametersValidation.ValidateValue(value, "Высота ножек");
                 _height = Math.Truncate(value);
             }
         }
@@ -33,7 +34,7 @@ namespace TablePlugin.BLL.Models
             get => _number;
             set
             {
-                ValidateValue(value, "Количество ножек");
+                ParametersValidation.ValidateValue(value, "Количество ножек");
                 _number = value;
             }
         }
@@ -51,28 +52,9 @@ namespace TablePlugin.BLL.Models
             get => _value;
             set
             {
-                ValidateValue(value, "Размер основания");
+                ParametersValidation.ValidateValue(value, "Размер основания");
                 _value = Math.Truncate(value);
             } 
-        }
-
-        //TODO: Duplication
-        /// <summary>
-        /// Проверка присваиваемого значения на double.
-        /// </summary>
-        /// <param name="value">Присваиваемая переменная.</param>
-        /// <param name="name">Имя параметра.</param>
-        private static void ValidateValue(double value, string name)
-        {
-            if (Math.Abs(value - Math.Truncate(value)) > 0.001d)
-            {
-                throw new ArgumentException($"Значение поля '{name}' не может быть дробным");
-            }
-            
-            if (value <= 0)
-            {
-                throw new ArgumentException($"{name} не может быть меньше или равна нулю!");
-            }
         }
     }
 }
