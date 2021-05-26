@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using KompasAPI7;
+using TablePlugin.BLL.Common;
 using TablePlugin.BLL.Enums;
 
 namespace TablePlugin.BLL.Models
@@ -187,13 +187,13 @@ namespace TablePlugin.BLL.Models
                     var leftY = (_tableTop.Width / 2) - (_tableLegs.Value / 2) - value.Radius - 20;
                     var rightY = (_tableTop.Width / 2) + (_tableLegs.Value / 2) + value.Radius + 20;
 
-                    CheckCrossingOfRange(
+                    ParametersValidation.CheckCrossingOfRange(
                         leftX, 
                         rightX, 
                         value.ParamX, 
                         "Расстояние по длине");
-                    
-                    CheckCrossingOfRange(
+
+                    ParametersValidation.CheckCrossingOfRange(
                         leftY, 
                         rightY, 
                         value.ParamY, 
@@ -277,25 +277,10 @@ namespace TablePlugin.BLL.Models
                 if (keyValue.Value < param.Min || keyValue.Value > param.Max)
                 {
                     throw new ArgumentException(
-                        $"Значение '{param.Name}' должно быть в диапозоне от {param.Min} до {param.Max}.");
+                        $"Значение '{param.Name}' должно быть " 
+                        + "в диапозоне от {param.Min} до {param.Max}.");
                 }
             } 
-        }
-
-        /// <summary>
-        /// Проверка на пересечение диапозона.
-        /// </summary>
-        /// <param name="left">Левое ограничение координат.</param>
-        /// <param name="right">Правое ограничение координат.</param>
-        /// <param name="param">Значение координат.</param>
-        /// <param name="name">Имя првоверяемого поля.</param>
-        private static void CheckCrossingOfRange(double left, double right, double param, string name)
-        {
-            if (left < param && param < right)
-            {
-                throw new ArgumentException(
-                    $"Значение '{name}' не должно пересекать диапозоне от {left} до {right}.");
-            }
         }
     }
 }
