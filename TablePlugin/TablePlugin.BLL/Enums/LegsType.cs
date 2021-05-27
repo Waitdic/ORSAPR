@@ -1,6 +1,5 @@
 ﻿namespace TablePlugin.BLL.Enums
 {
-    //TODO: XML комментарии?
     /// <summary>
     /// Enum, содержащий типы ножек стола.
     /// </summary>

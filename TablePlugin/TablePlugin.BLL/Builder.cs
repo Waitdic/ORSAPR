@@ -47,7 +47,6 @@ namespace TablePlugin.BLL
             var sketchDef = CreateSketch(Obj3dType.o3d_planeXOY);
             var doc2D = (ksDocument2D)sketchDef.BeginEdit();
 
-             //TODO: RSDN
              var rectangleParam = (ksRectangleParam)_connector
                 .KsObject
                 .GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
@@ -130,7 +129,6 @@ namespace TablePlugin.BLL
                 // Создание квадратов основания ножек.
                 for (var i = 0; i < x.Length; i++)
                 {
-                     //TODO: RSDN
                     var rectangleParam = (ksRectangleParam)_connector
                         .KsObject
                         .GetParamStruct((short)StructType2DEnum.ko_RectangleParam);
@@ -171,7 +169,6 @@ namespace TablePlugin.BLL
             
             sketchDef.EndEdit();
 
-             //TODO: RSDN
              PressOutSketch(
                 sketchDef, 
                 _parameters.TableTop.Height, 
@@ -186,7 +183,6 @@ namespace TablePlugin.BLL
         /// <param name="height">Высота выдавливание.</param>
         /// <param name="type">Тип выдавливания.</param>
         /// <param name="side">Направление выдаливания.</param>
-        ///  //TODO: RSDN
         private void PressOutSketch(
             ksSketchDefinition sketchDef, 
             double height, 
@@ -199,7 +195,6 @@ namespace TablePlugin.BLL
             {
                 var extrusionDef = (ksBossExtrusionDefinition)extrusionEntity.GetDefinition();
                 extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
-                 //TODO: RSDN
                 extrusionDef.directionType = side 
                     ? (short)Direction_Type.dtNormal 
                     : (short)Direction_Type.dtReverse;
@@ -210,7 +205,7 @@ namespace TablePlugin.BLL
             { 
                 var extrusionDef = (ksCutExtrusionDefinition)extrusionEntity.GetDefinition();
                 extrusionDef.SetSideParam(side, (short)End_Type.etBlind, height);
-                 //TODO: RSDN
+
                  extrusionDef.directionType = side 
                     ? (short)Direction_Type.dtNormal 
                     : (short)Direction_Type.dtReverse;

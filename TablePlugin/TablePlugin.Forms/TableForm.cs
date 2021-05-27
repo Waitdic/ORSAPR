@@ -179,7 +179,6 @@ namespace TablePlugin.Forms
         /// Метод для установки значений минимума и максимума для полей формы.
         /// </summary>
         /// <param name="expression">Лямбда-выражение.</param>
-        ///  //TODO: RSDN
         private void SetMinMaxParameters(Func<KeyValuePair<
             ParametersType,
             AdditionalParameters>,
@@ -187,7 +186,6 @@ namespace TablePlugin.Forms
         {
             var parameters = new TableParameters();
 
-            //TODO: Duplication
             tableTopLength.Value = parameters.SetMinMaxParameters(
                 expression, 
                 ParametersType.TableTopLength);
