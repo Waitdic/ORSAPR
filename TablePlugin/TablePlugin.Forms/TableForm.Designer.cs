@@ -35,6 +35,10 @@ namespace TablePlugin.Forms
             this.label3 = new System.Windows.Forms.Label();
             this.checkHole = new System.Windows.Forms.CheckBox();
             this.topGroupBox = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.BoxNumber = new System.Windows.Forms.NumericUpDown();
+            this.label20 = new System.Windows.Forms.Label();
+            this.checkBox = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -68,6 +72,7 @@ namespace TablePlugin.Forms
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.topGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BoxNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableTopHeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableTopWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableTopLength)).BeginInit();
@@ -84,7 +89,7 @@ namespace TablePlugin.Forms
             // 
             // BuildButton
             // 
-            this.BuildButton.Location = new System.Drawing.Point(182, 377);
+            this.BuildButton.Location = new System.Drawing.Point(182, 388);
             this.BuildButton.Name = "BuildButton";
             this.BuildButton.Size = new System.Drawing.Size(150, 49);
             this.BuildButton.TabIndex = 0;
@@ -122,7 +127,7 @@ namespace TablePlugin.Forms
             // checkHole
             // 
             this.checkHole.AutoSize = true;
-            this.checkHole.Location = new System.Drawing.Point(11, 74);
+            this.checkHole.Location = new System.Drawing.Point(12, 87);
             this.checkHole.Name = "checkHole";
             this.checkHole.Size = new System.Drawing.Size(130, 17);
             this.checkHole.TabIndex = 11;
@@ -133,6 +138,10 @@ namespace TablePlugin.Forms
             // topGroupBox
             // 
             this.topGroupBox.AutoSize = true;
+            this.topGroupBox.Controls.Add(this.label19);
+            this.topGroupBox.Controls.Add(this.BoxNumber);
+            this.topGroupBox.Controls.Add(this.label20);
+            this.topGroupBox.Controls.Add(this.checkBox);
             this.topGroupBox.Controls.Add(this.label13);
             this.topGroupBox.Controls.Add(this.label12);
             this.topGroupBox.Controls.Add(this.label11);
@@ -145,10 +154,62 @@ namespace TablePlugin.Forms
             this.topGroupBox.Controls.Add(this.label1);
             this.topGroupBox.Location = new System.Drawing.Point(11, 12);
             this.topGroupBox.Name = "topGroupBox";
-            this.topGroupBox.Size = new System.Drawing.Size(491, 110);
+            this.topGroupBox.Size = new System.Drawing.Size(491, 123);
             this.topGroupBox.TabIndex = 12;
             this.topGroupBox.TabStop = false;
             this.topGroupBox.Text = "Столешница";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.DimGray;
+            this.label19.Location = new System.Drawing.Point(403, 86);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(38, 13);
+            this.label19.TabIndex = 23;
+            this.label19.Text = "1-5 шт";
+            // 
+            // BoxNumber
+            // 
+            this.BoxNumber.Location = new System.Drawing.Point(333, 84);
+            this.BoxNumber.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.BoxNumber.Minimum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.BoxNumber.Name = "BoxNumber";
+            this.BoxNumber.Size = new System.Drawing.Size(64, 20);
+            this.BoxNumber.TabIndex = 22;
+            this.BoxNumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(331, 68);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(108, 13);
+            this.label20.TabIndex = 21;
+            this.label20.Text = "Количество ящиков";
+            // 
+            // checkBox
+            // 
+            this.checkBox.AutoSize = true;
+            this.checkBox.Location = new System.Drawing.Point(179, 87);
+            this.checkBox.Name = "checkBox";
+            this.checkBox.Size = new System.Drawing.Size(123, 17);
+            this.checkBox.TabIndex = 20;
+            this.checkBox.Text = "Выдвижные ящики";
+            this.checkBox.UseVisualStyleBackColor = true;
+            this.checkBox.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // label13
             // 
@@ -259,7 +320,7 @@ namespace TablePlugin.Forms
             this.ledsGroupBox.Controls.Add(this.label8);
             this.ledsGroupBox.Controls.Add(this.label7);
             this.ledsGroupBox.Controls.Add(this.label6);
-            this.ledsGroupBox.Location = new System.Drawing.Point(11, 223);
+            this.ledsGroupBox.Location = new System.Drawing.Point(11, 236);
             this.ledsGroupBox.Name = "ledsGroupBox";
             this.ledsGroupBox.Size = new System.Drawing.Size(323, 142);
             this.ledsGroupBox.TabIndex = 13;
@@ -435,7 +496,7 @@ namespace TablePlugin.Forms
             this.buttonGroupBox.Controls.Add(this.DefaultButton);
             this.buttonGroupBox.Controls.Add(this.SetMinButton);
             this.buttonGroupBox.Controls.Add(this.SetMaxButton);
-            this.buttonGroupBox.Location = new System.Drawing.Point(346, 223);
+            this.buttonGroupBox.Location = new System.Drawing.Point(345, 236);
             this.buttonGroupBox.Name = "buttonGroupBox";
             this.buttonGroupBox.Size = new System.Drawing.Size(157, 142);
             this.buttonGroupBox.TabIndex = 16;
@@ -464,7 +525,7 @@ namespace TablePlugin.Forms
             this.holeGroupBox.Controls.Add(this.label10);
             this.holeGroupBox.Controls.Add(this.label15);
             this.holeGroupBox.Controls.Add(this.label16);
-            this.holeGroupBox.Location = new System.Drawing.Point(11, 134);
+            this.holeGroupBox.Location = new System.Drawing.Point(11, 146);
             this.holeGroupBox.Name = "holeGroupBox";
             this.holeGroupBox.Size = new System.Drawing.Size(491, 79);
             this.holeGroupBox.TabIndex = 17;
@@ -599,7 +660,7 @@ namespace TablePlugin.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 434);
+            this.ClientSize = new System.Drawing.Size(512, 445);
             this.Controls.Add(this.holeGroupBox);
             this.Controls.Add(this.buttonGroupBox);
             this.Controls.Add(this.ledsGroupBox);
@@ -612,6 +673,7 @@ namespace TablePlugin.Forms
             this.Text = "TablePlugin";
             this.topGroupBox.ResumeLayout(false);
             this.topGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BoxNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableTopHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableTopWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableTopLength)).EndInit();
@@ -671,6 +733,10 @@ namespace TablePlugin.Forms
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.NumericUpDown BoxNumber;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.CheckBox checkBox;
     }
 }
 

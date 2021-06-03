@@ -29,11 +29,13 @@ namespace TablePlugin.UnitTests
 
             // Act
             SetCorrectParameters(parameters);
+            var box = parameters.TableBoxNumber;
             var top = parameters.TableTop;
             var legs = parameters.TabLegs;
             var hole = parameters.TableHole;
 
             // Assert
+            Assert.NotNull(box);
             Assert.NotNull(top);
             Assert.NotNull(legs);
             Assert.NotNull(hole);
@@ -51,7 +53,7 @@ namespace TablePlugin.UnitTests
 
             // Assert
             Assert.NotNull(additionalParam);
-            Assert.AreEqual(10, additionalParam.Count);
+            Assert.AreEqual(11, additionalParam.Count);
             foreach(var p in additionalParam)
             {
                 Assert.NotNull(p.Value);
@@ -302,6 +304,23 @@ namespace TablePlugin.UnitTests
                + "в диапозоне от 5 до 5.");
         }
         
+        [TestCase(TestName = "Тест на присваивание неправильного "
+                             + "количества ящиков. Негативный тест.")]
+        public void TableParameters_WrongNumberOfBox_ThrowsExceptionResult()
+        {
+            // SetUp
+            var parameters = new TableParameters();
+            
+            // Assert
+            Assert.Throws<ArgumentException>(() =>
+                {
+                    // Act
+                    parameters.TableBoxNumber = 6;
+
+                }, "Значение 'Количество ящиков' должно быть "
+                   + "в диапозоне от 1 до 5.");
+        }
+        
         /// <param name="value">Присваиваемое значение.</param>
         /// <param name="parameter">Параметр.</param>
         /// <param name="name">Имя поля.</param>
@@ -365,6 +384,7 @@ namespace TablePlugin.UnitTests
 
         private static void SetCorrectParameters(TableParameters parameters)
         {
+            parameters.TableBoxNumber = 2;
             parameters.TableTop = new TableTopParameters
             {
                 Length = 1500,

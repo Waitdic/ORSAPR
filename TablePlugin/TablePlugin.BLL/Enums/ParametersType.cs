@@ -14,6 +14,7 @@
         TableLegsNumber = 6,
         TableLegsHeight = 7,
         TableLegsDiameter = 8,
-        TableLegsSideLength = 9
+        TableLegsSideLength = 9,
+        TableBox = 10
     }
 }

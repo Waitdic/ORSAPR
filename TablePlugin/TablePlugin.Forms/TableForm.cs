@@ -8,8 +8,9 @@ using TablePlugin.BLL.Models;
 
 namespace TablePlugin.Forms
 {
-    //TODO: XML комментарии?
-    // Класс для работы с формой (главным окном) плагина.
+    /// <summary>
+    /// Класс для работы с формой (главным окном) плагина.
+    /// </summary>
     public partial class TableForm : Form
     {
         /// <summary>
@@ -24,6 +25,7 @@ namespace TablePlugin.Forms
         {
             InitializeComponent();
             ChangeFormLocation(true);
+            ChangeBoxVisible(true);
             LegsTypeComboBox.SelectedIndex = 0;
         }
 
@@ -35,6 +37,11 @@ namespace TablePlugin.Forms
             var parameters = new TableParameters();
             try
             {
+                if (checkBox.Checked)
+                {
+                    parameters.TableBoxNumber = (int) BoxNumber.Value;
+                }
+                
                 parameters.TableTop = new TableTopParameters
                 {
                     Length = (double) tableTopLength.Value,
@@ -173,6 +180,25 @@ namespace TablePlugin.Forms
             tableLegsHeight.Value = 650m;
             tableLegsNumber.Value = 4m;
             SizeValue.Value = 50m;
+        }
+
+        /// <summary>
+        /// Метод для добавления выдвижных ящиков.
+        /// </summary>
+        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            ChangeBoxVisible(!checkBox.Checked);
+        }
+
+        /// <summary>
+        /// Метод для визуализации полей шкафчика.
+        /// </summary>
+        /// <param name="turnOff">Выключить видимость.</param>
+        private void ChangeBoxVisible(bool turnOff)
+        {
+            BoxNumber.Visible = !turnOff;
+            label20.Visible = !turnOff;
+            label19.Visible = !turnOff;
         }
 
         /// <summary>

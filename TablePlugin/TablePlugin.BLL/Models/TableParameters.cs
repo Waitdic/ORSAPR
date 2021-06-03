@@ -27,12 +27,18 @@ namespace TablePlugin.BLL.Models
         private TableLegsParameters _tableLegs;
 
         /// <summary>
+        /// Количество выдвижных ящиков.
+        /// </summary>
+        private int _tableBoxNumber;
+
+        /// <summary>
         /// Допольнительные параметры стола.
         /// </summary>
         private readonly Dictionary<ParametersType, AdditionalParameters> _additionalParameters;
 
-        //TODO: XML комментарии?
-        // Конструктор, который устанавливаниет начальные ограничения для параметров.
+        /// <summary>
+        /// Конструктор, который устанавливаниет начальные ограничения для параметров.
+        /// </summary>
         public TableParameters()
         {
             _additionalParameters = new Dictionary<ParametersType, AdditionalParameters>
@@ -127,6 +133,15 @@ namespace TablePlugin.BLL.Models
                         name: "Длина основания ножек"
                     )
                 },
+                {
+                    ParametersType.TableBox,
+                    new AdditionalParameters
+                    (
+                        min: 1,
+                        max: 5,
+                        name: "Количество ящиков"
+                    )
+                }
             };
         }
 
@@ -172,6 +187,15 @@ namespace TablePlugin.BLL.Models
                 additionalParamY.ChangeRange(
                     max: _tableTop.Width - value.Radius - 70,
                     min: value.Radius + 70);
+                
+                if (_tableBoxNumber >= 3)
+                {
+                    var hole = _additionalParameters
+                        .FirstOrDefault(x => x.Key == ParametersType.HoleParamX)
+                        .Value;
+                    
+                    hole.ChangeRange(max: hole.Max - 350, min: hole.Min);
+                }
 
                 CheckRangeOfValues(new Dictionary<ParametersType, double>
                 {
@@ -212,7 +236,7 @@ namespace TablePlugin.BLL.Models
             get => _tableLegs;
             set
             {
-                if (Math.Abs(_tableTop.Length - 2000d) < 0.001)
+                if ((Math.Abs(_tableTop.Length - 2000d) < 0.001) && _tableBoxNumber == 0)
                 {
                     var number = _additionalParameters
                         .FirstOrDefault(x => x.Key == ParametersType.TableLegsNumber)
@@ -235,6 +259,30 @@ namespace TablePlugin.BLL.Models
 
                 CheckRangeOfValues(container);
                 _tableLegs = value;
+            }
+        }
+
+       
+        /// <summary>
+        /// Количество выдвижных ящиков.
+        /// </summary>
+        public int TableBoxNumber
+        {
+            get => _tableBoxNumber;
+            set
+            {
+                var number = _additionalParameters
+                    .FirstOrDefault(x => x.Key == ParametersType.TableLegsNumber)
+                    .Value;
+                
+                number.ChangeRange(max: 4, min: number.Min);
+
+                CheckRangeOfValues(new Dictionary<ParametersType, double>
+                {
+                    {ParametersType.TableBox, value}
+                });
+                
+                _tableBoxNumber = value;
             }
         }
 
