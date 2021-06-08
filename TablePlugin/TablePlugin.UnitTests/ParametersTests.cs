@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using NUnit.Framework;
+using TablePlugin.BLL.Common;
 using TablePlugin.BLL.Enums;
 using TablePlugin.BLL.Models;
 
@@ -118,6 +119,37 @@ namespace TablePlugin.UnitTests
                     : 400;
             }, $"Ошибка присвоения неправильного значения "
                + "в поле TableHoleParameters.{parameter}");
+        }
+        
+        [TestCase(TestName = "Тест присваивания {0} в TableHoleParameters.{1}" +
+                             "при наличие выдвижных ящиков. Негативный тест.")]
+        public void TableHoleParameters_WrongArgumentWithTableBox_ThrowsExceptionResult()
+        {
+            // SetUp
+            var parameters = new TableParameters
+            {
+                TableBoxNumber = 3,
+                TableTop = new TableTopParameters
+                {
+                    Length = 1500,
+                    Width = 700,
+                    Height = 35,
+                }
+            };
+
+            // Assert
+            Assert.Throws<ArgumentException>(() =>
+                {
+                    // Act
+                    parameters.TableHole = new TableHoleParameters
+                    {
+                        Radius = 25,
+                        ParamX =  1376d,
+                        ParamY = 400,
+                    };
+                    
+                }, $"Ошибка присвоения неправильного значения "
+                   + "в поле TableHoleParameters.{parameter}");
         }
         
         /// <param name="value">Присваиваемое значение.</param>
@@ -380,6 +412,23 @@ namespace TablePlugin.UnitTests
 
             }, $"Значение '{name}' не должно пересекать диапозоне "
                + $"от {range[0]} до {range[1]}.");
+        }
+        
+        [TestCase(TestName = "Тест проверки присваивания " +
+                             "неправильных min/max значений. Позитивный тест.")]
+        public void ComonValidation_WrongMinMaxValue_CorrectResult()
+        {
+            // SetUp
+            var min = 20;
+            var max = 10;
+
+            // Assert
+            Assert.Throws<ArgumentException>(() =>
+            {
+                // Act
+                ParametersValidation.ValidateMinMaxValue(min,max);
+
+            },"Min не может быть больше Max");
         }
 
         private static void SetCorrectParameters(TableParameters parameters)

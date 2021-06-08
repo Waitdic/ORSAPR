@@ -326,7 +326,7 @@ namespace TablePlugin.BLL.Models
                 {
                     throw new ArgumentException(
                         $"Значение '{param.Name}' должно быть " 
-                        + "в диапозоне от {param.Min} до {param.Max}.");
+                        + $"в диапозоне от {param.Min} до {param.Max}.");
                 }
             } 
         }

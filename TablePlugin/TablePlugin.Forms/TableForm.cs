@@ -240,10 +240,16 @@ namespace TablePlugin.Forms
                 expression, 
                 ParametersType.TableLegsHeight);
             
-            tableLegsNumber.Value = parameters.SetMinMaxParameters(
+            tableLegsNumber.Value = checkBox.Checked 
+                ? 4
+                : parameters.SetMinMaxParameters(
                 expression,
                 ParametersType.TableLegsNumber);
-            
+
+            BoxNumber.Value = parameters.SetMinMaxParameters(
+                expression,
+                ParametersType.TableBox);
+
             SizeValue.Value = LegsTypeComboBox.SelectedIndex == 0
                 ? parameters.SetMinMaxParameters(
                     expression,

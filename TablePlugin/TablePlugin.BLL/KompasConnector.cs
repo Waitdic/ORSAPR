@@ -14,7 +14,7 @@ namespace TablePlugin.BLL
         /// <summary>
         /// Интерфейс API Компаc3D.
         /// </summary>
-        public KompasObject KsObject { get; set; }
+        public KompasObject KsObject { get; }
 
         /// <summary>
         /// Интерфейс компонента Компас3D.
@@ -33,7 +33,7 @@ namespace TablePlugin.BLL
             }
             catch (COMException)
             {
-               KsObject = (KompasObject) Activator.CreateInstance(Type.GetTypeFromProgID(progId));
+               KsObject = (KompasObject)Activator.CreateInstance(Type.GetTypeFromProgID(progId));
                
                // TODO: Придумать решение, не требующее задержки.
                // Костыль, который решает, проблему, где апи не успевает польностью подключить,
@@ -51,7 +51,7 @@ namespace TablePlugin.BLL
         public void GetNewPart()
         {
             var ksDoc = (ksDocument3D)KsObject.Document3D();
-            ksDoc.Create(false, true);
+            ksDoc.Create();
             ksDoc = (ksDocument3D)KsObject.ActiveDocument3D();
             Part = (ksPart)ksDoc.GetPart((short)Part_Type.pTop_Part);
         }
