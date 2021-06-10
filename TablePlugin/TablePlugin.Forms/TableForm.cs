@@ -180,6 +180,7 @@ namespace TablePlugin.Forms
             tableLegsHeight.Value = 650m;
             tableLegsNumber.Value = 4m;
             SizeValue.Value = 50m;
+            BoxNumber.Value = 1m;
         }
 
         /// <summary>
@@ -211,6 +212,10 @@ namespace TablePlugin.Forms
             double> expression)
         {
             var parameters = new TableParameters();
+            if (checkBox.Checked)
+            {
+                parameters.SetMaxParamXWithBox();
+            }
 
             tableTopLength.Value = parameters.SetMinMaxParameters(
                 expression, 
@@ -229,7 +234,7 @@ namespace TablePlugin.Forms
                 ParametersType.HoleRadius);
             
             holeParamX.Value = parameters.SetMinMaxParameters(
-                expression, 
+                expression,
                 ParametersType.HoleParamX);
             
             holeParamY.Value = parameters.SetMinMaxParameters(

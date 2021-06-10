@@ -188,13 +188,9 @@ namespace TablePlugin.BLL.Models
                     max: _tableTop.Width - value.Radius - 70,
                     min: value.Radius + 70);
                 
-                if (_tableBoxNumber >= 3)
+                if (_tableBoxNumber > 0)
                 {
-                    var hole = _additionalParameters
-                        .FirstOrDefault(x => x.Key == ParametersType.HoleParamX)
-                        .Value;
-                    
-                    hole.ChangeRange(max: hole.Max - 350, min: hole.Min);
+                    SetMaxParamXWithBox();
                 }
 
                 CheckRangeOfValues(new Dictionary<ParametersType, double>
@@ -308,6 +304,20 @@ namespace TablePlugin.BLL.Models
                 .Where(x => x.Key == type)
                 .Select(expression)
                 .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Метод для изменения max значения
+        /// ограничения ParamX. 
+        /// </summary>
+        /// <returns>Частный случай.</returns>
+        public void SetMaxParamXWithBox()
+        {
+            var hole = _additionalParameters
+                .FirstOrDefault(x => x.Key == ParametersType.HoleParamX)
+                .Value;
+                    
+            hole.ChangeRange(max: hole.Max - 350, min: hole.Min);
         }
 
         /// <summary>

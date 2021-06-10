@@ -38,7 +38,7 @@ namespace TablePlugin.BLL
                // TODO: Придумать решение, не требующее задержки.
                // Костыль, который решает, проблему, где апи не успевает польностью подключить,
                // тем самым выбивая NullReferenceException при попытки его использовать.
-               Thread.Sleep(50);
+               Thread.Sleep(500);
             }
 
             KsObject.Visible = true;
