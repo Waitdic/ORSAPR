@@ -87,7 +87,7 @@ namespace TablePlugin.UnitTests
         /// <param name="parameter">В какой параметр будет присваиваться значение.</param>
         [TestCase(25.05d, "Radius", 
             TestName = "Тест присваивания {0} в TableHoleParameters.{1}. Негативный тест.")]
-        [TestCase(900.05d, "ParamX", 
+        [TestCase(25.05d, "ParamX", 
             TestName = "Тест присваивания {0} в TableHoleParameters.{1}. Негативный тест.")]
         [TestCase(400.05d, "ParamY", 
             TestName = "Тест присваивания {0} в TableHoleParameters.{1}. Негативный тест.")]
@@ -121,7 +121,7 @@ namespace TablePlugin.UnitTests
                + "в поле TableHoleParameters.{parameter}");
         }
         
-        [TestCase(TestName = "Тест присваивания {0} в TableHoleParameters.{1}" +
+        [TestCase(TestName = "Тест присваивания  в TableHoleParameters.ParamX" +
                              "при наличие выдвижных ящиков. Негативный тест.")]
         public void TableHoleParameters_WrongArgumentWithTableBox_ThrowsExceptionResult()
         {
@@ -193,15 +193,15 @@ namespace TablePlugin.UnitTests
         /// <param name="value">Присваиваемое значение.</param>
         /// <param name="parameter">В какой параметр будет присваиваться значение.</param>
         [TestCase(650.05d, "Height",
-            TestName = "Тест присваивания {0} в TableTopParameters.{1}. Негативный тест.")]
+            TestName = "Тест присваивания {0} в TableLegsParameters.{1}. Негативный тест.")]
         [TestCase(50.05d, "Value",
-            TestName = "Тест присваивания {0} в TableTopParameters.{1}. Негативный тест.")]
+            TestName = "Тест присваивания {0} в TableLegsParameters.{1}. Негативный тест.")]
         [TestCase(-1, "Height",
-            TestName = "Тест присваивания {0} в TableTopParameters.{1}. Негативный тест.")]
+            TestName = "Тест присваивания {0} в TableLegsParameters.{1}. Негативный тест.")]
         [TestCase(-1, "Number",
-            TestName = "Тест присваивания {0} в TableTopParameters.{1}. Негативный тест.")]
+            TestName = "Тест присваивания {0} в TableLegsParameters.{1}. Негативный тест.")]
         [TestCase(-1, "Value",
-            TestName = "Тест присваивания {0} в TableTopParameters.{1}. Негативный тест.")]
+            TestName = "Тест присваивания {0} в TableLegsParameters.{1}. Негативный тест.")]
         public void TableLegsParameters_WrongArgument_ThrowsExceptionResult(
             double value,
             string parameter)
