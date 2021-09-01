@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace TablePlugin.Forms
@@ -9,15 +6,14 @@ namespace TablePlugin.Forms
     static class Program
     {
         /// <summary>
-        ///  The main entry point for the application.
+        /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new TableForm());
         }
     }
 }
